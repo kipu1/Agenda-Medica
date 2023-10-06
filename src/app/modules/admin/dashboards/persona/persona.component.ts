@@ -9,19 +9,19 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
-import { ProjectService } from 'app/modules/admin/dashboards/project/project.service';
+import { PersonaService } from 'app/modules/admin/dashboards/persona/persona.service';
 import { ApexOptions, NgApexchartsModule } from 'ng-apexcharts';
 import { Subject, takeUntil } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
-    selector       : 'project',
-    templateUrl    : './project.component.html',
+    selector       : 'persona',
+    templateUrl    : './persona.component.html',
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone     : true,
     imports        : [TranslocoModule,MatFormFieldModule, MatIconModule, MatButtonModule, MatRippleModule, MatMenuModule, MatTabsModule, MatButtonToggleModule, NgApexchartsModule, NgFor, NgIf, MatTableModule, NgClass, CurrencyPipe],
 })
-export class ProjectComponent implements OnInit, OnDestroy
+export class PersonaComponent implements OnInit, OnDestroy
 {
     chartGithubIssues: ApexOptions = {};
     chartTaskDistribution: ApexOptions = {};
@@ -38,7 +38,7 @@ dataSource: any;
      * Constructor
      */
     constructor(
-        private _projectService: ProjectService,
+        private _personaService: PersonaService,
         private _router: Router,
         
     )
@@ -55,7 +55,7 @@ dataSource: any;
     ngOnInit(): void
     {
         // Get the data
-        this._projectService.data$
+        this._personaService.data$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((data) =>
             {

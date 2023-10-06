@@ -106,59 +106,61 @@
 </head>
 
 <body>
-    <h1>Formulario de Registro de vademecum</h1>
+    <h1>Formulario de Registro de Persona</h1>
 
     <!-- Formulario -->
     <form id="registroForm">
         <div class="clearfix">
             <div class="column">
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id" required>
+                <label for="id_persona">ID de Persona:</label>
+                <input type="text" id="id_persona" name="id_persona" required>
 
-                <label for="id_doctor">id_doctor:</label>
-                <input type="text" id="id_doctor" name="id_doctor" required>
+                <label for="cedula">Cédula:</label>
+                <input type="text" id="cedula" name="cedula" required>
 
-                <label for="compartido"> compartido:</label>
-                <input type="text" id="compartido" name="compartido" required>
+                <label for="primer_nombre">Primer Nombre:</label>
+                <input type="text" id="primer_nombre" name="primer_nombre" required>
 
-                <label for="laboratorio"> laboratorio:</label>
-                <input type="text" id="laboratorio" name="laboratorio">
-
-                <label for="medicamento">medicamento:</label>
-                <input type="text" id="medicamento" name="medicamento" required>
-
-                <label for="composicion">composicion:</label>
-                <input type="text" id="composicion" name="composicion">
+                <label for="segundo_nombre">Segundo Nombre:</label>
+                <input type="text" id="segundo_nombre" name="segundo_nombre">
             </div>
             <div class="column">
+                <label for="primer_apellido">Primer Apellido:</label>
+                <input type="text" id="primer_apellido" name="primer_apellido" required>
+
+                <label for="segundo_apellido">Segundo Apellido:</label>
+                <input type="text" id="segundo_apellido" name="segundo_apellido">
+
                
-            
 
-                <label for="indicaciones"> indicaciones:</label>
-        <input type="text" id="indicaciones" name="indicaciones" required>
 
-        <label for="contraindicaciones">contraindicaciones:</label>
-        <input type="text" id="contraindicaciones" name="contraindicaciones" required>
 
-        <label for="posologia">posologia:</label>
-        <input type="text" id="posologia" name="posologia" required>
-                
 
-        <label for="equivalencias">equivalencias:</label>
-        <input type="text" id="equivalencias" name="equivalencias" required>
-
-        <label for="anotaciones">anotaciones:</label>
-        <input type="text" id="anotaciones" name="anotaciones" required>
-
-        
-        
 <div></div>
-<label for="stock">stock:</label>
-<input type="number" id="stock" name="stock" required>    
+               
+<label for="genero">Género:</label>
+<select id="genero" name="genero" required>
+    <option value="Masculino">Seleccionar</option>
+    <option value="Masculino">Masculino</option>
+    <option value="Femenino">Femenino</option>
+</select><br> 
+
             </div>
         </div>
 
-       
+        <label for="fechanacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechanacimiento" name="fechanacimiento" required>
+
+
+
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required>
 
         <input type="submit" value="Registrar">
     </form>
@@ -168,20 +170,17 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>id_doctor</th>
-                <th>compartido</th>
-                <th>laboratorio</th>
-                <th>medicamento</th>
-                <th>composicion</th>
-                <th>indicaciones</th>
-                <th>contraindicaciones</th>
-                <th>posologia</th>
-                <th>id_categoria</th>
-                <th>equivalencias</th>
-                <th>anotaciones</th>
-                <th>stock</th>
-              
+                <th>ID Persona</th>
+                <th>Cédula</th>
+                <th>Primer Nombre</th>
+                <th>Segundo Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Género</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Correo Electrónico</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
             </tr>
         </thead>
         <tbody id="tablaRegistros">

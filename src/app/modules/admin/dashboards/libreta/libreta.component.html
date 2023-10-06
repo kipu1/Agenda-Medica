@@ -2,7 +2,7 @@
 <html>
 
 <head>
-
+   
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -106,59 +106,51 @@
 </head>
 
 <body>
-    <h1>Formulario de Registro de vademecum</h1>
+    <h1>Formulario de Registro de libreta</h1>
 
     <!-- Formulario -->
     <form id="registroForm">
         <div class="clearfix">
             <div class="column">
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id" required>
+                <label for="id_libreta">id libreta:</label>
+                <input type="text" id="id_libreta" name="id_libreta" required>
 
-                <label for="id_doctor">id_doctor:</label>
-                <input type="text" id="id_doctor" name="id_doctor" required>
+                <label for="nombre">nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
 
-                <label for="compartido"> compartido:</label>
-                <input type="text" id="compartido" name="compartido" required>
+                <label for="telefono">telefono:</label>
+                <input type="text" id="telefono" name="telefono" required>
 
-                <label for="laboratorio"> laboratorio:</label>
-                <input type="text" id="laboratorio" name="laboratorio">
+                <label for="celular">celular:</label>
+                <input type="text" id="celular" name="celular">
 
-                <label for="medicamento">medicamento:</label>
-                <input type="text" id="medicamento" name="medicamento" required>
-
-                <label for="composicion">composicion:</label>
-                <input type="text" id="composicion" name="composicion">
             </div>
             <div class="column">
-               
-            
 
-                <label for="indicaciones"> indicaciones:</label>
-        <input type="text" id="indicaciones" name="indicaciones" required>
-
-        <label for="contraindicaciones">contraindicaciones:</label>
-        <input type="text" id="contraindicaciones" name="contraindicaciones" required>
-
-        <label for="posologia">posologia:</label>
-        <input type="text" id="posologia" name="posologia" required>
                 
+                <label for="email">email:</label>
+                <input type="email" id="email" name="email" required>
 
-        <label for="equivalencias">equivalencias:</label>
-        <input type="text" id="equivalencias" name="equivalencias" required>
+                <label for="web">web:</label>
+                <input type="text" id="web" name="web" required>
 
-        <label for="anotaciones">anotaciones:</label>
-        <input type="text" id="anotaciones" name="anotaciones" required>
+                <label for="direccion">direccion:</label>
+                <input type="text" id="direccion" name="direccion">
 
-        
-        
+                
+        <label for="notas">notas:</label>
+        <input type="text" id="notas" name="notas" required>
+
+     
+
+                
 <div></div>
-<label for="stock">stock:</label>
-<input type="number" id="stock" name="stock" required>    
+                
             </div>
         </div>
 
        
+
 
         <input type="submit" value="Registrar">
     </form>
@@ -168,20 +160,15 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>id_doctor</th>
-                <th>compartido</th>
-                <th>laboratorio</th>
-                <th>medicamento</th>
-                <th>composicion</th>
-                <th>indicaciones</th>
-                <th>contraindicaciones</th>
-                <th>posologia</th>
-                <th>id_categoria</th>
-                <th>equivalencias</th>
-                <th>anotaciones</th>
-                <th>stock</th>
-              
+                <th>id_libreta</th>
+                <th>nombre</th>
+                <th>telefono</th>
+                <th>celular</th>
+                <th>email</th>
+                <th>web</th>
+                <th>Género</th>
+                <th>direccion</th>
+                <th>notas</th>
             </tr>
         </thead>
         <tbody id="tablaRegistros">

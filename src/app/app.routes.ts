@@ -77,6 +77,9 @@ export const appRoutes: Route[] = [
 
             // Dashboards
             {path: 'dashboards', children: [
+                {path: 'libreta', loadChildren: () => import('app/modules/admin/dashboards/libreta/libreta.routes')},
+           
+                {path: 'persona', loadChildren: () => import('app/modules/admin/dashboards/persona/persona.routes')},
                 {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/project/project.routes')},
                 {path: 'analytics', loadChildren: () => import('app/modules/admin/dashboards/analytics/analytics.routes')},
                 {path: 'finance', loadChildren: () => import('app/modules/admin/dashboards/finance/finance.routes')},
@@ -85,6 +88,8 @@ export const appRoutes: Route[] = [
 
             // Apps
             {path: 'apps', children: [
+
+               
                 {path: 'academy', loadChildren: () => import('app/modules/admin/apps/academy/academy.routes')},
                 {path: 'chat', loadChildren: () => import('app/modules/admin/apps/chat/chat.routes')},
                 {path: 'contacts', loadChildren: () => import('app/modules/admin/apps/contacts/contacts.routes')},
