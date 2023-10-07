@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Libreta } from './libreta';
 
 @Injectable({providedIn: 'root'})
 export class LibretaService
 {
     private _data: BehaviorSubject<any> = new BehaviorSubject(null);
-
-    /**
-     * Constructor
-     */
+    url: string = 'http://localhost:8080/api/libreta';
     constructor(private _httpClient: HttpClient)
     {
     }
@@ -42,4 +40,17 @@ export class LibretaService
             }),
         );
     }
+    savePersona(libreta: Libreta): Observable<Libreta>{
+        return this._httpClient.post<Libreta>(this.url+'/crear',libreta);
+      }
+      
+      obtenerListaPersona(): Observable<Libreta[]> {
+        return this._httpClient.get<Libreta[]>(`${this.url}/listar`);
+      }
+    
+      updatePersona(id: number, libreta: Libreta): Observable<object> {
+        return this._httpClient.put(`${this.url}/actualizar/${id}`, libreta);
+      }
+  
+      
 }

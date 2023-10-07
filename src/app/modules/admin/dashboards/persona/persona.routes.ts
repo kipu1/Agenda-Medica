@@ -6,10 +6,10 @@ import { PersonaComponent } from './persona.component';
 
 export default [
     {
-        path     : '',
+        path: '',
         component: PersonaComponent,
-        resolve  : {
-            data: () => inject( PersonaService).getData(),
+        resolve: {
+            data: () => inject(PersonaService).getData(),
         },
     },
 ] as Routes;

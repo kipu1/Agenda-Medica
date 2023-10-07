@@ -79,10 +79,10 @@ export const appRoutes: Route[] = [
             {path: 'dashboards', children: [
                 {path: 'libreta', loadChildren: () => import('app/modules/admin/dashboards/libreta/libreta.routes')},
            
-                {path: 'persona', loadChildren: () => import('app/modules/admin/dashboards/persona/persona.routes')},
-                {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/project/project.routes')},
-                {path: 'analytics', loadChildren: () => import('app/modules/admin/dashboards/analytics/analytics.routes')},
-                {path: 'finance', loadChildren: () => import('app/modules/admin/dashboards/finance/finance.routes')},
+                {path: 'personas', loadChildren: () => import('app/modules/admin/dashboards/persona/persona.routes')},
+                {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/vademecum/vademecum.routes')},
+                {path: 'analytics', loadChildren: () => import('app/modules/admin/dashboards/doctor/doctor.routes')},
+                {path: 'finance', loadChildren: () => import('app/modules/admin/dashboards/historias/historias.routes')},
                 {path: 'crypto', loadChildren: () => import('app/modules/admin/dashboards/crypto/crypto.routes')},
             ]},
 

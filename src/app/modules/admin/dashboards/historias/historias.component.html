@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            padding: 20px 0;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .column {
+            float: left;
+            width: 50%;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007BFF;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #000000;
+            padding: 12px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        /* Clearfix para solucionar problemas de flotación */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Formulario de Registro de Historias</h1>
+
+    <!-- Formulario -->
+    <form id="registroForm">
+        <div class="clearfix">
+            <div class="column">
+                <label for="id_historia">id_historia:</label>
+                <input type="text" id="id_historia" name="id_historia" required>
+
+                <label for="id_paciente">id_paciente:</label>
+                <input type="text" id="id_paciente" name="id_paciente" required>
+
+                
+                <label for="fechanacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fechanacimiento" name="fechanacimiento" required>
+
+               
+            </div>
+
+
+
+
+            <div class="column">
+         
+
+                <label for="nota">nota:</label>
+                <input type="text" id="nota" name="nota">
+
+
+
+                <label for="id_autor">id_autor:</label>
+                <input type="text" id="id_autor" name="id_autor" required>
+
+                <label for="firma">firma:</label>
+                <input type="text" id="firma" name="firma">
+
+       
+
+            </div>
+        </div>
+
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required>
+
+        <input type="submit" value="Registrar">
+    </form>
+
+    <!-- Tabla de registros -->
+  
+    <table>
+        <thead>
+            <tr>
+                <th>id_historia</th>
+                <th>id_paciente</th>
+                <th>fecha</th>
+                <th>nota</th>
+                <th>id_autor</th>
+                <th>firma</th>
+           
+            </tr>
+        </thead>
+        <tbody id="tablaRegistros">
+            <!-- Los registros se mostrarán aquí -->
+        </tbody>
+    </table>
+
+    <!-- Script para procesar el formulario y mostrar en la tabla -->
+    <script>
+        const formulario = document.getElementById('registroForm');
+        const tablaRegistros = document.getElementById('tablaRegistros');
+
+        formulario.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const id_persona = document.getElementById('id_persona').value;
+            const cedula = document.getElementById('cedula').value;
+            const primer_nombre = document.getElementById('primer_nombre').value;
+            const segundo_nombre = document.getElementById('segundo_nombre').value;
+            const primer_apellido = document.getElementById('primer_apellido').value;
+            const segundo_apellido = document.getElementById('segundo_apellido').value;
+            const genero = document.getElementById('genero').value;
+            const fechanacimiento = document.getElementById('fechanacimiento').value;
+            const correo = document.getElementById('correo').value;
+            const direccion = document.getElementById('direccion').value;
+            const telefono = document.getElementById('telefono').value;
+
+            // Crear una nueva fila en la tabla y agregarla a la tabla
+            const nuevaFila = tablaRegistros.insertRow();
+            const celdaID = nuevaFila.insertCell(0);
+            const celdaCedula = nuevaFila.insertCell(1);
+            const celdaPrimerNombre = nuevaFila.insertCell(2);
+            const celdaSegundoNombre = nuevaFila.insertCell(3);
+            const celdaPrimerApellido = nuevaFila.insertCell(4);
+            const celdaSegundoApellido = nuevaFila.insertCell(5);
+            const celdaGenero = nuevaFila.insertCell(6);
+            const celdaFechaNacimiento = nuevaFila.insertCell(7);
+            const celdaCorreo = nuevaFila.insertCell(8);
+            const celdaDireccion = nuevaFila.insertCell(9);
+            const celdaTelefono = nuevaFila.insertCell(10);
+
+            celdaID.textContent = id_persona;
+            celdaCedula.textContent = cedula;
+            celdaPrimerNombre.textContent = primer_nombre;
+            celdaSegundoNombre.textContent = segundo_nombre;
+            celdaPrimerApellido.textContent = primer_apellido;
+            celdaSegundoApellido.textContent = segundo_apellido;
+            celdaGenero.textContent = genero;
+            celdaFechaNacimiento.textContent = fechanacimiento;
+            celdaCorreo.textContent = correo;
+            celdaDireccion.textContent = direccion;
+            celdaTelefono.textContent = telefono;
+
+            // Limpiar el formulario
+            formulario.reset();
+        });
+    </script>
+</body>
+
+</html>
