@@ -19,6 +19,7 @@ import { MatSort } from '@angular/material/sort';
 import { FormsModule, NgModel } from "@angular/forms";
 import { fuseAnimations } from "@fuse/animations";
 import { MatInputModule } from "@angular/material/input";
+import { MatRadioModule } from "@angular/material/radio";
 
 
 @Component({
@@ -28,7 +29,7 @@ import { MatInputModule } from "@angular/material/input";
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
     standalone     : true,
-    imports        : [ NgFor, FormsModule ,MatTableModule, MatPaginatorModule,MatButtonModule,MatIconModule,MatInputModule,MatFormFieldModule,MatTableModule,
+    imports        : [ NgFor,MatRadioModule, FormsModule ,MatTableModule, MatPaginatorModule,MatButtonModule,MatIconModule,MatInputModule,MatFormFieldModule,MatTableModule,
       MatInputModule],
 })
 export class PersonaComponent 
