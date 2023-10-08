@@ -1,0 +1,105 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario y Tabla</title>
+    <style>
+   
+    </style>
+</head>
+<body>
+    <h1>Formulario de Registro</h1>
+<form>
+  <label for="servicio">Servicio:</label>
+<input type="text" id="servicio" name="servicio" [(ngModel)]="proveedor.servicio"><br>
+
+<label for="telefono1">Telefono1:</label>
+<input type="text" id="telefono1" name="telefono1" [(ngModel)]="proveedor.telefono1"><br>
+
+<label for="telefono2">Telefono2:</label>
+<input type="text" id="telefono2" name="telefono2" [(ngModel)]="proveedor.telefono2"><br>
+
+<label for="sitioweb">Sitio web:</label>
+<input type="text" id="sitioweb" name="sitioweb" [(ngModel)]="proveedor.sitioweb"><br>
+
+<label for="direccion">Direccion:</label>
+<input type="text" id="direccion" name="direccion" [(ngModel)]="proveedor.direccion"><br>
+
+
+<label for="anotaciones">Anotaciones:</label>
+<input type="text" id="anotaciones" name="anotaciones" [(ngModel)]="proveedor.anotaciones"><br>
+
+
+
+<button mat-raised-button color="accent"(click)="registrarPersona()">Registrar</button>
+
+</form>
+
+  <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64 mt-15" [subscriptSizing]="'dynamic'">
+    <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:magnifying-glass'"></mat-icon>
+    <input matInput (keyup)="applyFilter($event)" [placeholder]="'Buscar registros'" #input>
+  </mat-form-field>
+  <div style="overflow: auto; height: 300px;">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- ID Column -->
+    <ng-container matColumnDef="idProveedor">
+      <th mat-header-cell *matHeaderCellDef> ID Proveedor </th>
+      <td mat-cell *matCellDef="let registro"> {{registro.idProveedor}} </td>
+    </ng-container>
+
+    <!-- Cédula Column -->
+    <ng-container matColumnDef="servicio">
+      <th mat-header-cell *matHeaderCellDef> Servicio </th>
+      <td mat-cell *matCellDef="let registro"> {{registro.servicio}} </td>
+    </ng-container>
+  <!-- Primer Nombre Column -->
+  <ng-container matColumnDef="telefono1">
+    <th mat-header-cell *matHeaderCellDef> Telefono1 </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.telefono1}} </td>
+  </ng-container>
+
+  <!-- Segundo Nombre Column -->
+  <ng-container matColumnDef="telefono2">
+    <th mat-header-cell *matHeaderCellDef> Telefono2 </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.telefono2}} </td>
+  </ng-container>
+
+  <!-- Primer Apellido Column -->
+  <ng-container matColumnDef="sitioweb">
+    <th mat-header-cell *matHeaderCellDef>Sitio web </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.sitioweb}} </td>
+  </ng-container>
+
+  <!-- Segundo Apellido Column -->
+  <ng-container matColumnDef="direccion">
+    <th mat-header-cell *matHeaderCellDef> Direccion </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.direccion}} </td>
+  </ng-container>
+
+  <!-- Género Column -->
+  <ng-container matColumnDef="anotaciones">
+    <th mat-header-cell *matHeaderCellDef> Anotaciones </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.anotaciones}} </td>
+  </ng-container>
+
+ 
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let registro; columns: displayedColumns;"></tr>
+
+  <tbody>
+        <tr *ngFor="let registro of registros">
+            <td>{{ registro.idProveedor }}</td>
+            <td>{{ registro.servicio }}</td>
+            <td>{{ registro.telefono1}}</td>
+            <td>{{ registro.telefono2 }}</td>
+            <td>{{ registro.sitioweb }}</td>
+            <td>{{ registro.direccion }}</td>
+            <td>{{ registro.anotaciones }}</td>
+         
+        </tr>
+    </tbody>
+  
+</table>
+</div>
+    
+</body>
+</html> 

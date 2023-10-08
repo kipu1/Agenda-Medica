@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewChild, ViewEncapsulation } from "@angular/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { TranslocoModule } from "@ngneat/transloco";
-
+ import { Proveedor } from "./proveedor";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatRippleModule } from "@angular/material/core";
@@ -19,13 +19,12 @@ import { MatSort } from '@angular/material/sort';
 import { FormsModule, NgModel } from "@angular/forms";
 import { fuseAnimations } from "@fuse/animations";
 import { MatInputModule } from "@angular/material/input";
-import { HistoriasService } from "./historias.service";
-import { Historias } from "./historias";
+import { ProveedorService } from "./proveedor.service";
 
 
 @Component({
-    selector       : 'historias',
-    templateUrl    : './historias.component.html',
+    selector       : 'proveedor',
+    templateUrl    : './proveedor.component.html',
    
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
@@ -33,29 +32,29 @@ import { Historias } from "./historias";
     imports        : [ NgFor, FormsModule ,MatTableModule, MatPaginatorModule,MatButtonModule,MatIconModule,MatInputModule,MatFormFieldModule,MatTableModule,
       MatInputModule],
 })
-export class HistoriasComponent 
+export class ProveedorComponent 
 {
-  displayedColumns: string[] = ['idHistoria','idPaciente', 'fecha', 'nota', 'idAutor', 'firma'];
-  dataSource = new MatTableDataSource<Historias>;
-  historias:Historias = new Historias();
+  displayedColumns: string[] = ['idProveedor','servicio', 'telefono1', 'telefono2', 'sitioweb', 'direccion', 'anotaciones'];
+  dataSource = new MatTableDataSource<Proveedor>;
+  proveedor:Proveedor = new Proveedor();
 
   
-registros: Historias[] = [];
+registros: Proveedor[] = [];
 
   registrarPersona() {
     // Validar los campos del formulario
-    if (!this.historias.fecha || !this.historias.nota || !this.historias.firma ) {
+    if (!this.proveedor.servicio || !this.proveedor.telefono1 || !this.proveedor.telefono2 || !this.proveedor.sitioweb || !this.proveedor.direccion || !this.proveedor.anotaciones) {
       return;
     }
   
     // Realizar la lógica de registro aquí
-    this.historiasService.savePersona(this.historias).subscribe(dato => {
+    this.proveedorService.savePersona(this.proveedor).subscribe(dato => {
       console.log(dato);
       // Agregar la persona al estado local (reemplaza 'this.registros' con tu estado local)
-      this.registros.push(this.historias);
+      this.registros.push(this.proveedor);
   
       // Restablecer los campos del formulario después del registro
-      this.historias = new Historias(); // Esto restablecerá todos los campos a sus valores iniciales (vacíos)
+      this.proveedor = new Proveedor(); // Esto restablecerá todos los campos a sus valores iniciales (vacíos)
       // Actualizar el origen de datos de la tabla
       this.dataSource.data = this.registros;
   
@@ -76,13 +75,13 @@ registros: Historias[] = [];
      * Constructor
      */
     constructor(
-      private historiasService: HistoriasService
+      private proveedorService: ProveedorService
         
     )
     
     {
       this.registros = [];
-      this.dataSource = new MatTableDataSource<Historias>(this.registros);
+      this.dataSource = new MatTableDataSource<Proveedor>(this.registros);
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -98,7 +97,7 @@ registros: Historias[] = [];
     }
   
     listarRegistros(): void {
-      this.historiasService.obtenerListaPersona().subscribe(respuesta => {
+      this.proveedorService.obtenerListaPersona().subscribe(respuesta => {
         // Aquí puedes manejar la respuesta de la solicitud
         this.registros = respuesta;
         // Actualizar el origen de datos de la tabla

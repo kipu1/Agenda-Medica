@@ -1,13 +1,14 @@
 import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
-import { HistoriasComponent } from 'app/modules/admin/dashboards/historias/historias.component';
+
 import { HistoriasService } from 'app/modules/admin/dashboards/historias/historias.service';
+import { HistoriasComponent } from './historias.component';
 
 export default [
     {
-        path     : '',
+        path: '',
         component: HistoriasComponent,
-        resolve  : {
+        resolve: {
             data: () => inject(HistoriasService).getData(),
         },
     },

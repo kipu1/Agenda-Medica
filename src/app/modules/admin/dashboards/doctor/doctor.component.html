@@ -1,269 +1,201 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
-
 <head>
-   
+    <title>Formulario y Tabla</title>
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            text-align: center;
-            color: #007BFF;
-            padding: 20px 0;
-        }
-
-        form {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        label {
-            font-weight: bold;
-            color: #333;
-        }
-
-        input[type="text"],
-        input[type="date"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .column {
-            float: left;
-            width: 50%;
-        }
-
-        input[type="submit"] {
-            background-color: #007BFF;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        h2 {
-            text-align: center;
-            color: #007BFF;
-            margin-top: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            border: 1px solid #000000;
-            padding: 12px;
-            text-align: left;
-            font-size: 16px;
-        }
-
-        th {
-            background-color: #007BFF;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:hover {
-            background-color: #ddd;
-        }
-
-        /* Clearfix para solucionar problemas de flotación */
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
+   
     </style>
 </head>
-
 <body>
-    <h1>Formulario de Registro de Doctor</h1>
+    <h1>Formulario de Doctor</h1>
+<form>
 
-    <!-- Formulario -->
-    <form id="registroForm">
-        <div class="clearfix">
-            <div class="column">
-                <label for="id_doctor">id doctor:</label>
-                <input type="text" id="id_doctorr" name="id_doctor" required>
+<label for="nombre"> Nombre:</label>
+<input type="text" id="nombre" name="nombre" [(ngModel)]="doctor.nombre"><br>
 
-                <label for="id_rol">id rol:</label>
-                <input type="text" id="id_rol" name="id_rol" required>
+<label for="clavesecreta">Clavesecreta:</label>
+<input type="text" id="clavesecreta" name="clavesecreta" [(ngModel)]="doctor.clavesecreta"><br>
 
-                <label for="nombre">nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+<label for="comentarios">Comentarios:</label>
+<input type="text" id="comentarios" name="comentarios" [(ngModel)]="doctor.comentarios"><br>
 
-                <label for="clavesecreta">clavesecreta:</label>
-                <input type="text" id="clavesecreta" name="clavesecreta">
-
-                <label for="comentarios">comentarios:</label>
-                <input type="text" id="comentarios" name="comentarios" required>
-
-                <label for="direccion">Direccion:</label>
-                <input type="text" id="direccion" name="direccion">
-
-            
-                <label for="especialidad">especialidad:</label>
-                <input type="text" id="especialidad" name="especialidad" required>
+<label for="direccion">Direccion:</label>
+<input type="text" id="direccion" name="direccion" [(ngModel)]="doctor.direccion"><br>
 
 
-                <label for="telefono">telefono:</label>
-                <input type="text" id="telefono" name="telefono" required>
+<label for="especialidad">Especialidad:</label>
+<input type="text" id="especialidad" name="especialidad" [(ngModel)]="doctor.especialidad"><br>
+
+<label for="telefono">Telefono:</label>
+<input type="text" id="telefono" name="telefono" [(ngModel)]="doctor.telefono"><br>
+
+<label for="clave">Clave:</label>
+<input type="text" id="clave" name="clave" [(ngModel)]="doctor.clave"><br>
+
+<label for="notaAuto">Nota Auto:</label>
+<input type="text" id="notaAuto" name="notaAuto" [(ngModel)]="doctor.notaAuto"><br>
+
+<label for="nota">Nota:</label>
+<input type="text" id="nota" name="nota" [(ngModel)]="doctor.nota"><br>
 
 
-                
-            </div>
-            <div class="column">
-               
 
-                <label for="clave">clave:</label>
-                <input type="text" id="clave" name="clave" required>
+<label for="comparte">Comparte:</label>
+<input type="text" id="comparte" name="comparte" [(ngModel)]="doctor.comparte"><br>
 
-                <label for="nota_auto">nota_auto:</label>
-                <input type="text" id="nota_auto" name="nota_auto" required>
+<label for="cfg">Cfg:</label>
+<input type="text" id="cfg" name="direcfgcion" [(ngModel)]="doctor.cfg"><br>
+
+<label for="cfgsec">Cfgsec:</label>
+<input type="text" id="cfgsec" name="cfgsec" [(ngModel)]="doctor.cfgsec"><br>
+
+<label for="email">Email:</label>
+<input type="text" id="email" name="email" [(ngModel)]="doctor.email"><br>
+
+<label for="extraAsister">Extr aAsister:</label>
+<input type="text" id="extraAsister" name="extraAsister" [(ngModel)]="doctor.extraAsister"><br>
+
+<label for="field">Field:</label>
+<input type="text" id="field" name="field" [(ngModel)]="doctor.field"><br>
+
+<button mat-raised-button color="accent"(click)="registrarPersona()">Registrar</button>
+
+</form>
+
+  <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64 mt-15" [subscriptSizing]="'dynamic'">
+    <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:magnifying-glass'"></mat-icon>
+    <input matInput (keyup)="applyFilter($event)" [placeholder]="'Buscar registros'" #input>
+  </mat-form-field>
+  <div style="overflow: auto; height: 300px;">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- ID Column -->
+    <ng-container matColumnDef="idDoctor">
+      <th mat-header-cell *matHeaderCellDef> ID Doctor </th>
+      <td mat-cell *matCellDef="let registro"> {{registro.idDoctor}} </td>
+    </ng-container>
+
+    <!-- Cédula Column -->
+    <ng-container matColumnDef="idRol">
+      <th mat-header-cell *matHeaderCellDef> ID Rol </th>
+      <td mat-cell *matCellDef="let registro"> {{registro.idRol}} </td>
+    </ng-container>
+  <!-- Primer Nombre Column -->
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.nombre}} </td>
+  </ng-container>
+
+  <!-- Segundo Nombre Column -->
+  <ng-container matColumnDef="clavesecreta">
+    <th mat-header-cell *matHeaderCellDef> Clave secreta </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.clavesecreta}} </td>
+  </ng-container>
+
+  <!-- Primer Apellido Column -->
+  <ng-container matColumnDef="comentarios">
+    <th mat-header-cell *matHeaderCellDef> Comentarioso </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.comentarios}} </td>
+  </ng-container>
+
+  <!-- Segundo Apellido Column -->
+  <ng-container matColumnDef="direccion">
+    <th mat-header-cell *matHeaderCellDef> direccion </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.direccion}} </td>
+  </ng-container>
+
+  <!-- Género Column -->
+  <ng-container matColumnDef="especialidad">
+    <th mat-header-cell *matHeaderCellDef> Especialidad </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.especialidad}} </td>
+  </ng-container>
+
+  <!-- Fecha de Nacimiento Column -->
+  <ng-container matColumnDef="telefono">
+    <th mat-header-cell *matHeaderCellDef> Telefono </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.telefono}} </td>
+  </ng-container>
+
+  <!-- Correo Column -->
+  <ng-container matColumnDef="clave">
+    <th mat-header-cell *matHeaderCellDef> Clave </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.clave}} </td>
+  </ng-container>
+
+  <!-- Dirección Column -->
+  <ng-container matColumnDef="notaAuto">
+    <th mat-header-cell *matHeaderCellDef> Nota Auto </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.notaAuto}} </td>
+  </ng-container>
+
+  <!-- Teléfono Column -->
+  <ng-container matColumnDef="nota">
+    <th mat-header-cell *matHeaderCellDef> Nota </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.nota}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="comparte">
+    <th mat-header-cell *matHeaderCellDef> Comparte </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.comparte}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cfg">
+    <th mat-header-cell *matHeaderCellDef> cfg </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.cfg}} </td>
+  </ng-container>
 
 
-                <label for="nota">nota:</label>
-                <input type="text" id="nota" name="nota" required>
-
-                <label for="comparte">comparte:</label>
-                <input type="text" id="comparte" name="comparte" required>
-
-                <label for="cfg">cfg:</label>
-                <input type="text" id="cfg" name="cfg" required>
-
-                <label for="cfgsec">cfgsec:</label>
-                <input type="text" id="cfgsec" name="cfgsec" required>
-
-                <label for="email">email:</label>
-                <input type="email" id="email" name="email" required>
+  <ng-container matColumnDef="cfgsec">
+    <th mat-header-cell *matHeaderCellDef> cfgsec </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.cfgsec}} </td>
+  </ng-container>
 
 
-                <label for="extra_asister">extra_asister:</label>
-                <input type="text" id="extra_asister" name="extra_asister" required>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Correo </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.email}} </td>
+  </ng-container>
 
-            </div>
-        </div>
+  <ng-container matColumnDef="extraAsister">
+    <th mat-header-cell *matHeaderCellDef> Extra Asister </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.extraAsister}} </td>
+  </ng-container>
 
-        <label for="field">field:</label>
-        <input type="text" id="field" name="field" required>
+
+  <ng-container matColumnDef="field">
+    <th mat-header-cell *matHeaderCellDef> Field </th>
+    <td mat-cell *matCellDef="let registro"> {{registro.field}} </td>
+  </ng-container>
 
 
-       
-        <input type="submit" value="Registrar">
-    </form>
 
-    <!-- Tabla de registros -->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let registro; columns: displayedColumns;"></tr>
+
+  <tbody>
+        <tr *ngFor="let registro of registros">
+            <td>{{ registro.idDoctor }}</td>
+            <td>{{ registro.idRol }}</td>
+            <td>{{ registro.nombre}}</td>
+            <td>{{ registro.clavesecreta }}</td>
+            <td>{{ registro.comentarios }}</td>
+            <td>{{ registro.direccion }}</td>
+            <td>{{ registro.especialidad }}</td>
+            <td>{{ registro.telefono }}</td>
+            <td>{{ registro.clave }}</td>
+            <td>{{ registro.notaAuto }}</td>
+            <td>{{ registro.nota }}</td>
+            <td>{{ registro.comparte }}</td>
+            <td>{{ registro.cfg }}</td>
+            <td>{{ registro.cfgsec }}</td>
+            <td>{{ registro.email }}</td>
+            <td>{{ registro.extraAsister }}</td>
+            <td>{{ registro.field }}</td>
+        </tr>
+    </tbody>
   
-    <table>
-        <thead>
-            <tr>
-                <th>id_doctor</th>
-                <th>id_rol</th>
-                <th>nombre</th>
-                <th>clavesecreta</th>
-                <th>comentarios</th>
-                <th>Direccion</th>
-                <th>Anotaciones</th>
-                <th>telefono</th>
-                <th>clave</th>
-                <th>nota_auto</th>
-                <th>nota</th>
-                <th>comparte</th>
-                <th>cfg</th>
-                <th>cfgsec</th>
-                <th>email</th>
-                <th>extra_asister</th>
-                <th>field</th>
-
-
-            
-            
-            </tr>
-        </thead>
-        <tbody id="tablaRegistros">
-            <!-- Los registros se mostrarán aquí -->
-        </tbody>
-    </table>
-
-    <!-- Script para procesar el formulario y mostrar en la tabla -->
-    <script>
-        const formulario = document.getElementById('registroForm');
-        const tablaRegistros = document.getElementById('tablaRegistros');
-
-        formulario.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const id_persona = document.getElementById('id_persona').value;
-            const cedula = document.getElementById('cedula').value;
-            const primer_nombre = document.getElementById('primer_nombre').value;
-            const segundo_nombre = document.getElementById('segundo_nombre').value;
-            const primer_apellido = document.getElementById('primer_apellido').value;
-            const segundo_apellido = document.getElementById('segundo_apellido').value;
-            const genero = document.getElementById('genero').value;
-            const fechanacimiento = document.getElementById('fechanacimiento').value;
-            const correo = document.getElementById('correo').value;
-            const direccion = document.getElementById('direccion').value;
-            const telefono = document.getElementById('telefono').value;
-
-            // Crear una nueva fila en la tabla y agregarla a la tabla
-            const nuevaFila = tablaRegistros.insertRow();
-            const celdaID = nuevaFila.insertCell(0);
-            const celdaCedula = nuevaFila.insertCell(1);
-            const celdaPrimerNombre = nuevaFila.insertCell(2);
-            const celdaSegundoNombre = nuevaFila.insertCell(3);
-            const celdaPrimerApellido = nuevaFila.insertCell(4);
-            const celdaSegundoApellido = nuevaFila.insertCell(5);
-            const celdaGenero = nuevaFila.insertCell(6);
-            const celdaFechaNacimiento = nuevaFila.insertCell(7);
-            const celdaCorreo = nuevaFila.insertCell(8);
-            const celdaDireccion = nuevaFila.insertCell(9);
-            const celdaTelefono = nuevaFila.insertCell(10);
-
-            celdaID.textContent = id_persona;
-            celdaCedula.textContent = cedula;
-            celdaPrimerNombre.textContent = primer_nombre;
-            celdaSegundoNombre.textContent = segundo_nombre;
-            celdaPrimerApellido.textContent = primer_apellido;
-            celdaSegundoApellido.textContent = segundo_apellido;
-            celdaGenero.textContent = genero;
-            celdaFechaNacimiento.textContent = fechanacimiento;
-            celdaCorreo.textContent = correo;
-            celdaDireccion.textContent = direccion;
-            celdaTelefono.textContent = telefono;
-
-            // Limpiar el formulario
-            formulario.reset();
-        });
-    </script>
+</table>
+</div>
+    
 </body>
-
-</html>
+</html> 

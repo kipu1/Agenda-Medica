@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewChild, ViewEncapsulation } from "@angular/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { TranslocoModule } from "@ngneat/transloco";
-
+ import { Paciente} from "./paciente";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatRippleModule } from "@angular/material/core";
@@ -19,13 +19,12 @@ import { MatSort } from '@angular/material/sort';
 import { FormsModule, NgModel } from "@angular/forms";
 import { fuseAnimations } from "@fuse/animations";
 import { MatInputModule } from "@angular/material/input";
-import { HistoriasService } from "./historias.service";
-import { Historias } from "./historias";
+import { PacienteService } from "./paciente.service";
 
 
 @Component({
-    selector       : 'historias',
-    templateUrl    : './historias.component.html',
+    selector       : 'paciente',
+    templateUrl    : './paciente.component.html',
    
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
@@ -33,29 +32,29 @@ import { Historias } from "./historias";
     imports        : [ NgFor, FormsModule ,MatTableModule, MatPaginatorModule,MatButtonModule,MatIconModule,MatInputModule,MatFormFieldModule,MatTableModule,
       MatInputModule],
 })
-export class HistoriasComponent 
+export class PacienteComponent 
 {
-  displayedColumns: string[] = ['idHistoria','idPaciente', 'fecha', 'nota', 'idAutor', 'firma'];
-  dataSource = new MatTableDataSource<Historias>;
-  historias:Historias = new Historias();
+  displayedColumns: string[] = ['idPaciente','idRol', 'apellido', 'nombre', 'documento', 'fechanacimiento', 'grupo', 'sexo', 'direccion', 'cp', 'obra','afiliado','correo', 'telefono1', 'telefono2', 'telefono3', 'clinicos', 'diagnostico', 'cormobilidades', 'familiar', 'comentarios', 'extra1','extra2','extra3', 'extra4', 'extra5', 'extra6', 'extra7', 'extra8', 'extra9', 'extra10', 'idDoctor', 'campoCfg1','campoCfg2','campoCfg3', 'tipodocumento', 'abrir', 'field'];
+  dataSource = new MatTableDataSource<Paciente>;
+  paciente:Paciente = new Paciente();
 
   
-registros: Historias[] = [];
+registros: Paciente[] = [];
 
   registrarPersona() {
     // Validar los campos del formulario
-    if (!this.historias.fecha || !this.historias.nota || !this.historias.firma ) {
+    if (!this.paciente.apellido || !this.paciente.nombre || !this.paciente.documento || !this.paciente.fechanacimiento || !this.paciente.grupo || !this.paciente.sexo || !this.paciente.direccion || !this.paciente.cp || !this.paciente.obra || !this.paciente.afiliado|| !this.paciente.correo || !this.paciente.telefono1 || !this.paciente.telefono2 || !this.paciente.telefono3 || !this.paciente.clinicos || !this.paciente.diagnostico || !this.paciente.cormobilidades || !this.paciente.familiar || !this.paciente.comentarios|| !this.paciente.extra1 || !this.paciente.extra2 || !this.paciente.extra3 || !this.paciente.extra4 || !this.paciente.extra5 || !this.paciente.extra6 || !this.paciente.extra7 || !this.paciente.extra8 || !this.paciente.extra9|| !this.paciente.extra10 || !this.paciente.campoCfg1 || !this.paciente.campoCfg2 || !this.paciente.campoCfg3 || !this.paciente.tipodocumento || !this.paciente.abrir || !this.paciente.field ) {
       return;
     }
   
     // Realizar la lógica de registro aquí
-    this.historiasService.savePersona(this.historias).subscribe(dato => {
+    this.pacienteService.savePersona(this.paciente).subscribe(dato => {
       console.log(dato);
       // Agregar la persona al estado local (reemplaza 'this.registros' con tu estado local)
-      this.registros.push(this.historias);
+      this.registros.push(this.paciente);
   
       // Restablecer los campos del formulario después del registro
-      this.historias = new Historias(); // Esto restablecerá todos los campos a sus valores iniciales (vacíos)
+      this.paciente = new Paciente(); // Esto restablecerá todos los campos a sus valores iniciales (vacíos)
       // Actualizar el origen de datos de la tabla
       this.dataSource.data = this.registros;
   
@@ -76,13 +75,13 @@ registros: Historias[] = [];
      * Constructor
      */
     constructor(
-      private historiasService: HistoriasService
+      private pacienteService: PacienteService
         
     )
     
     {
       this.registros = [];
-      this.dataSource = new MatTableDataSource<Historias>(this.registros);
+      this.dataSource = new MatTableDataSource<Paciente>(this.registros);
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -98,7 +97,7 @@ registros: Historias[] = [];
     }
   
     listarRegistros(): void {
-      this.historiasService.obtenerListaPersona().subscribe(respuesta => {
+      this.pacienteService.obtenerListaPersona().subscribe(respuesta => {
         // Aquí puedes manejar la respuesta de la solicitud
         this.registros = respuesta;
         // Actualizar el origen de datos de la tabla

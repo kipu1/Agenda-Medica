@@ -1,16 +1,23 @@
-export class Persona {
 
-    idPersona?: number;
-    cedula: string='';
-    primerNombre: string='';
-    segundoNombre: string='';
-    primerApellido: string='';
-    segundoApellido: string='';
-    genero: string='';
-    fechanacimiento ?: string='';   
-    correo: string='';
+
+export class Doctor {
+
+    idDoctor?: number;
+    idRol?: number;
+    nombre: string='';
+    clavesecreta: string='';
+    comentarios: string='';
     direccion: string='';
+    especialidad: string='';
     telefono: string='';
-   
+    clave: string='';
+    notaAuto: string='';
+    nota: string='';   
+    comparte: string='';
+    cfg: string='';
+    cfgsec: string='';
+    email: string='';
+    extraAsister: string='';
+    field: string='';
 
 }

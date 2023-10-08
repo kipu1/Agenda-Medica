@@ -1,14 +1,15 @@
 import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
-import { AnalyticsComponent } from 'app/modules/admin/dashboards/doctor/doctor.component';
-import { AnalyticsService } from 'app/modules/admin/dashboards/doctor/doctor.service';
+
+import { DoctorService } from 'app/modules/admin/dashboards/doctor/doctor.service';
+import { DoctorComponent } from './doctor.component';
 
 export default [
     {
-        path     : '',
-        component: AnalyticsComponent,
-        resolve  : {
-            data: () => inject(AnalyticsService).getData(),
+        path: '',
+        component: DoctorComponent,
+        resolve: {
+            data: () => inject(DoctorService).getData(),
         },
     },
 ] as Routes;

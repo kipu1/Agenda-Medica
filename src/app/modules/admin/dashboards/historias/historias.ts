@@ -1,10 +1,12 @@
+
 export class Historias {
 
-    id_historia?: number;
-    id_paciente?: number;
-   
+    idHistoria?: number;
+    idPaciente?: number;
+    
     fecha ?: string='';   
-    id_autor?: number;
+    nota: string='';
+    idAutor?: number;
    
     firma: string='';
    

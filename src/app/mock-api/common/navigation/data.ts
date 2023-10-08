@@ -16,27 +16,8 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:archive-box-arrow-down',
                 link : '/dashboards/project',
             },
-            {
-                id   : 'dashboards.Doctor',
-                title: 'Doctor',
-                type : 'basic',
-                icon : 'heroicons_outline:user',
-                link : '/dashboards/analytics',
-            },
-            {
-                id   : 'dashboards.finance',
-                title: 'Historias',
-                type : 'basic',
-                icon : 'heroicons_outline:chat-bubble-bottom-center-text',
-                link : '/dashboards/finance',
-            },
-            {
-                id   : 'dashboards.crypto',
-                title: 'Proveedor',
-                type : 'basic',
-                icon : 'heroicons_outline:users',
-                link : '/dashboards/crypto',
-            },
+         
+     
 
             {
                 id   : 'dashboards.Libreta',
@@ -52,6 +33,37 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:user',
                 link : '/dashboards/personas',
             },
+            {
+                id   : 'dashboards.Doctor',
+                title: 'Doctor',
+                type : 'basic',
+                icon : 'heroicons_outline:user',
+                link : '/dashboards/doctor',
+            },
+            
+            {
+                id   : 'dashboards.Proveedor',
+                title: 'Proveedor',
+                type : 'basic',
+                icon : 'heroicons_outline:user',
+                link : '/dashboards/proveedor',
+            },
+            {
+                id   : 'dashboards.Paciente',
+                title: 'Paciente',
+                type : 'basic',
+                icon : 'heroicons_outline:user',
+                link : '/dashboards/paciente',
+            },
+            {
+                id   : 'dashboards.Historias',
+                title: 'Historias',
+                type : 'basic',
+                icon : 'heroicons_outline:chat-bubble-bottom-center-text',
+                link : '/dashboards/historias',
+            },
+         
+            
         ],
 
     },
