@@ -80,12 +80,13 @@ export const appRoutes: Route[] = [
                 {path: 'libreta', loadChildren: () => import('app/modules/admin/dashboards/libreta/libreta.routes')},
                 {path: 'doctor', loadChildren: () => import('app/modules/admin/dashboards/doctor/doctor.routes')},
                 {path: 'personas', loadChildren: () => import('app/modules/admin/dashboards/persona/persona.routes')},
-                {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/vademecum/vademecum.routes')},
+
                 {path: 'proveedor', loadChildren: () => import('app/modules/admin/dashboards/proveedor/proveedor.routes')},
                 {path: 'paciente', loadChildren: () => import('app/modules/admin/dashboards/paciente/paciente.routes')},
                 {path: 'historias', loadChildren: () => import('app/modules/admin/dashboards/historias/historias.routes')},
+                {path: 'vademecum', loadChildren: () => import('app/modules/admin/dashboards/vademecum/vademecum.routes')},
+                {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/project/project.routes')},
                 
-               
             ]},
 
             // Apps

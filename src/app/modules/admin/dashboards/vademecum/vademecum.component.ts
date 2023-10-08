@@ -1,123 +1,110 @@
-import { CurrencyPipe, NgClass, NgFor, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatRippleModule } from '@angular/material/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatTabsModule } from '@angular/material/tabs';
-import { Router } from '@angular/router';
-import { TranslocoModule } from '@ngneat/transloco';
-import { VademecumService } from 'app/modules/admin/dashboards/vademecum/vademecum.service';
-import { ApexOptions, NgApexchartsModule } from 'ng-apexcharts';
-import { Subject, takeUntil } from 'rxjs';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { Vademecum } from './vademecum';
+import { ChangeDetectionStrategy, Component, ViewChild, ViewEncapsulation } from "@angular/core";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { TranslocoModule } from "@ngneat/transloco";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatRippleModule } from "@angular/material/core";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { NgApexchartsModule } from "ng-apexcharts";
+import { CurrencyPipe, NgClass, NgFor, NgIf } from "@angular/common";
+
+import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
+import { Subject, takeUntil } from "rxjs";
+
+import { MatTableDataSource , MatTableModule } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { FormsModule, NgModel } from "@angular/forms";
+import { fuseAnimations } from "@fuse/animations";
+import { MatInputModule } from "@angular/material/input";
+import { VademecumService } from "./vademecum.service";
+import { Vademecum } from "./vademecum";
+
+
 @Component({
     selector       : 'vademecum',
     templateUrl    : './vademecum.component.html',
-    encapsulation  : ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
+   
+    encapsulation: ViewEncapsulation.None,
+    animations: fuseAnimations,
     standalone     : true,
-    imports        : [TranslocoModule,MatFormFieldModule, MatIconModule, MatButtonModule, MatRippleModule, MatMenuModule, MatTabsModule, MatButtonToggleModule, NgApexchartsModule, NgFor, NgIf, MatTableModule, NgClass, CurrencyPipe],
+    imports        : [ NgFor, FormsModule ,MatTableModule, MatPaginatorModule,MatButtonModule,MatIconModule,MatInputModule,MatFormFieldModule,MatTableModule,
+      MatInputModule],
 })
 export class VademecumComponent 
 {
-    vademecums:Vademecum[]=[];
-    
-    private _unsubscribeAll: Subject<any> = new Subject<any>();
-    data: any;
-    recentTransactionsDataSource: any;
-    dataSource: any;
-    paginator: any;
+  displayedColumns: string[] = ['id','idDoctor', 'compartido', 'laboratorio', 'medicamento', 'composicion', 'indicaciones', 'contraindicaciones', 'posologia', 'idCategoria', 'equivalencias','anotaciones','stock'];
+  dataSource = new MatTableDataSource<Vademecum>;
+  vademecums:Vademecum = new Vademecum();
+
+  
+registros: Vademecum[] = [];
+
+  registrarPersona() {
+    // Validar los campos del formulario
+    if (!this.vademecums.compartido || !this.vademecums.laboratorio || !this.vademecums.medicamento || !this.vademecums.composicion || !this.vademecums.indicaciones || !this.vademecums.contraindicaciones || !this.vademecums.posologia || !this.vademecums.equivalencias || !this.vademecums.anotaciones || !this.vademecums.stock) {
+      return;
+    }
+  
+    // Realizar la lógica de registro aquí
+    this.vademecumService.savePersona(this.vademecums).subscribe(dato => {
+      console.log(dato);
+      // Agregar la persona al estado local (reemplaza 'this.registros' con tu estado local)
+      this.registros.push(this.vademecums);
+  
+      // Restablecer los campos del formulario después del registro
+      this.vademecums = new Vademecum(); // Esto restablecerá todos los campos a sus valores iniciales (vacíos)
+      // Actualizar el origen de datos de la tabla
+      this.dataSource.data = this.registros;
+  
+      // Actualizar la página de manera discreta
+      location.reload();
+    });
+  }
+  applyFilter(event: Event) {
+    console.log('Filtering...'); // Verifica si este mensaje aparece en la consola
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+ 
+
     /**
      * Constructor
      */
-    constructor(  private historiasService: VademecumService) {}
-   
-    ngOnInit(): void
-  {
-    this.listarpersona();
-      // Get the data
-      this.historiasService.data$
-          .pipe(takeUntil(this._unsubscribeAll))
-          .subscribe((data) =>
-          {
-              // Store the data
-              this.data = data;
-
-              // Store the table data
-              this.recentTransactionsDataSource.data = data.recentTransactions;
-
-              // Prepare the chart data
+    constructor(
+      private vademecumService:VademecumService
         
-          });
-  }
-listarpersona() {
-  this.historiasService.obtenerListaResponsable().subscribe(
-    (datos: Vademecum[]) => {
-      this.vademecums = datos; // Asigna los datos a la propiedad users
-      this.dataSource = new MatTableDataSource<Vademecum>(datos);
-
-      this.dataSource.paginator = this.paginator;
-      this.paginator.length = datos.length;
-      // Llama a nextPage() después de configurar el paginador
-      this.nextPage();
-    },
-    error => {
-      console.error('Ocurrió un error al obtener la lista de Historias :', error);
-    }
-  );
-}
-nextPage() {
-  if (this.paginator.hasNextPage()) {
-    this.paginator.nextPage();
-  }
-}
-// guardarPersona() {
-//   // Crea una nueva instancia de Usuario con los datos de la persona
-//   const nuevaPersona: Historias = {
-//     id_persona: this.id_persona, // Asigna el valor de id_persona
-//     cedula: this.cedula,
-//     primer_nombre: this.primer_nombre,
-//     segundo_nombre: this.segundo_nombre,
-//     primer_apellido: this.primer_apellido,
-//     segundo_apellido: this.segundo_apellido,
-//     genero: this.genero,
-//     fechanacimiento: this.fechanacimiento,
-//     correo: this.correo,
-//     direccion: this.direccion,
-//     telefono: this.telefono
-//   };
-
-//   // Agrega la nueva persona a la lista de usuarios
-//   this.historia.push(nuevaPersona);
-
-//   // Actualiza la fuente de datos de la tabla con la lista actualizada de usuarios
-//   this.dataSource = new MatTableDataSource<Historias>(this.historia);
-
-//   // Actualiza el paginador de la tabla si es necesario
-//   if (this.paginator) {
-//     this.paginator.length = this.historia.length;
-//     this.nextPage(); // Llama a nextPage() si es necesario
-//   }
-
-//   // Llama al servicio para guardar la persona (puedes implementar esta parte según tus necesidades)
-//   this.historiasService.savePersona(nuevaPersona).subscribe(
-//     respuesta => {
-//       // Aquí puedes manejar la respuesta del servicio si es necesario
-//       console.log('Persona guardada con éxito', respuesta);
-//     },
-//     error => {
-//       console.error('Ocurrió un error al guardar la persona:', error);
-//     }
-//   );
-// }
-
-    // redirectToPersona() {
-    //   this._router.navigate(['/persona']);
-    // }
-
+    )
     
-}
+    {
+      this.registros = [];
+      this.dataSource = new MatTableDataSource<Vademecum>(this.registros);
+    }
+
+    // -----------------------------------------------------------------------------------------------------
+    // @ Lifecycle hooks
+    // -----------------------------------------------------------------------------------------------------
+
+    /**
+     * On init
+     */
+    ngOnInit(): void {
+      // Ejemplo de identificador de persona
+      this.listarRegistros();
+    }
+  
+    listarRegistros(): void {
+      this.vademecumService.obtenerListaPersona().subscribe(respuesta => {
+        // Aquí puedes manejar la respuesta de la solicitud
+        this.registros = respuesta;
+        // Actualizar el origen de datos de la tabla
+        this.dataSource.data = this.registros;
+      }, error => {
+        // Aquí puedes manejar el error de la solicitud
+        console.error(error);
+      });
+    }
+  }

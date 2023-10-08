@@ -1,20 +1,21 @@
 
-
 export class Vademecum {
 
     id?: number;
+    idDoctor?: number;
     compartido: string='';
     laboratorio: string='';
-    segundo_nombre: string='';
     medicamento: string='';
+    composicion: string='';
+  
     indicaciones: string='';
     contraindicaciones: string='';
     posologia: string='';   
   
-    id_categoria?: number;
+    idCategoria?: number;
     equivalencias: string='';
     anotaciones: string='';
-    stock: number
+    stock?: number
    
 
 }

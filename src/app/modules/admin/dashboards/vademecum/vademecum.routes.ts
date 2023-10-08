@@ -1,13 +1,14 @@
 import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
-import { VademecumComponent } from 'app/modules/admin/dashboards/vademecum/vademecum.component';
+
 import { VademecumService } from 'app/modules/admin/dashboards/vademecum/vademecum.service';
+import { VademecumComponent } from './vademecum.component';
 
 export default [
     {
-        path     : '',
+        path: '',
         component: VademecumComponent,
-        resolve  : {
+        resolve: {
             data: () => inject(VademecumService).getData(),
         },
     },

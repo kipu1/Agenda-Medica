@@ -10,8 +10,8 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon    : 'heroicons_outline:home',
         children: [
             {
-                id   : 'dashboards.Vademecum',
-                title: 'Vademecum',
+                id   : 'dashboards.NOES',
+                title: 'NOES',
                 type : 'basic',
                 icon : 'heroicons_outline:archive-box-arrow-down',
                 link : '/dashboards/project',
@@ -61,6 +61,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 type : 'basic',
                 icon : 'heroicons_outline:chat-bubble-bottom-center-text',
                 link : '/dashboards/historias',
+            },
+            {
+                id   : 'dashboards.Vademecum',
+                title: 'Vademecum',
+                type : 'basic',
+                icon : 'heroicons_outline:archive-box-arrow-down',
+                link : '/dashboards/vademecum',
             },
          
             
