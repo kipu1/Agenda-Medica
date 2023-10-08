@@ -85,7 +85,7 @@ export const appRoutes: Route[] = [
                 {path: 'paciente', loadChildren: () => import('app/modules/admin/dashboards/paciente/paciente.routes')},
                 {path: 'historias', loadChildren: () => import('app/modules/admin/dashboards/historias/historias.routes')},
                 {path: 'vademecum', loadChildren: () => import('app/modules/admin/dashboards/vademecum/vademecum.routes')},
-                {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/project/project.routes')},
+                // {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/project/project.routes')},
                 
             ]},
 
