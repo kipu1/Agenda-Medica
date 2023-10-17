@@ -33,12 +33,10 @@
 <input type="text" id="clave" name="clave" [(ngModel)]="doctor.clave"><br>
 
 <label for="notaAuto">Nota Auto:</label>
-<input type="text" id="notaAuto" name="notaAuto" [(ngModel)]="doctor.notaAuto"><br>
+<textarea  id="notaAuto" name="notaAuto" [(ngModel)]="doctor.notaAuto"></textarea><br>
 
 <label for="nota">Nota:</label>
-<input type="text" id="nota" name="nota" [(ngModel)]="doctor.nota"><br>
-
-
+<textarea  id="nota" name="nota" [(ngModel)]="doctor.nota"></textarea><br>
 
 <label for="comparte">Comparte:</label>
 <input type="text" id="comparte" name="comparte" [(ngModel)]="doctor.comparte"><br>
@@ -123,15 +121,19 @@
 
   <!-- Dirección Column -->
   <ng-container matColumnDef="notaAuto">
-    <th mat-header-cell *matHeaderCellDef> Nota Auto </th>
-    <td mat-cell *matCellDef="let registro"> {{registro.notaAuto}} </td>
+    <th mat-header-cell *matHeaderCellDef> Nota Auto  </th>
+    <td mat-cell *matCellDef="let registro">
+      <button mat-button color="primary" (click)="abrirDialog(registro.notaAuto)">Ver</button>
+    </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="nota">
+    <th mat-header-cell *matHeaderCellDef> Notas  </th>
+    <td mat-cell *matCellDef="let registro">
+      <button mat-button color="primary" (click)="abrirDialog(registro.nota)">Ver</button>
+    </td>
   </ng-container>
 
-  <!-- Teléfono Column -->
-  <ng-container matColumnDef="nota">
-    <th mat-header-cell *matHeaderCellDef> Nota </th>
-    <td mat-cell *matCellDef="let registro"> {{registro.nota}} </td>
-  </ng-container>
 
   <ng-container matColumnDef="comparte">
     <th mat-header-cell *matHeaderCellDef> Comparte </th>
@@ -166,6 +168,13 @@
     <td mat-cell *matCellDef="let registro"> {{registro.field}} </td>
   </ng-container>
 
+
+  <ng-container matColumnDef="editar">
+    <th mat-header-cell *matHeaderCellDef> Editar </th>
+    <td mat-cell *matCellDef="let registro">
+      <button mat-button color="primary" (click)="cargarDatosEnFormulario(registro)">Editar</button>
+    </td>
+  </ng-container>
 
 
 

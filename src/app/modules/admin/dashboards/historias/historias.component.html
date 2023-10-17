@@ -7,22 +7,20 @@
     </style>
 </head>
 <body>
-  <h1 class="mt-8 text-4xl font-extrabold tracking-tight leading-tight"> Registro Historias</h1>
+ <h1 class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Registro Historias</h1>
 <form>
-  <label for="fecha">Fecha :</label>
-  <input type="date" id="fecha" name="fecha" [(ngModel)]="historias.fecha"><br>
+  <label for="fecha">Fecha:</label>
+  <input type="date" id="fecha" name="fecha" [value]="historias.fecha | date:'yyyy-MM-dd'" (input)="historias.fecha = $event.target.value" required><br>
+  
 
-<label for="nota">Nota:</label>
-<input type="text" id="nota" name="nota" [(ngModel)]="historias.nota"><br>
+  <label for="nota">Notas:</label>
+  <textarea id="nota" name="nota" [(ngModel)]="historias.nota"></textarea><br>
 
-<label for="firma">Firma:</label>
-<input type="text" id="firma" name="firma" [(ngModel)]="historias.firma"><br>
+  <label for="firma">Firma:</label>
+  <input type="text" id="firma" name="firma" [(ngModel)]="historias.firma" required><br>
 
-
-<button mat-raised-button color="accent"(click)="registrarPersona()">Registrar</button>
-
+  <button mat-raised-button color="accent" (click)="registrarPersona()">Registrar</button>
 </form>
-
   <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64 mt-15" [subscriptSizing]="'dynamic'">
     <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:magnifying-glass'"></mat-icon>
     <input matInput (keyup)="applyFilter($event)" [placeholder]="'Buscar registros'" #input>
@@ -48,8 +46,10 @@
 
   <!-- Segundo Nombre Column -->
   <ng-container matColumnDef="nota">
-    <th mat-header-cell *matHeaderCellDef> Nota </th>
-    <td mat-cell *matCellDef="let registro"> {{registro.nota}} </td>
+    <th mat-header-cell *matHeaderCellDef> Notas  </th>
+    <td mat-cell *matCellDef="let registro">
+      <button mat-button color="primary" (click)="abrirDialog(registro.nota)">Ver</button>
+    </td>
   </ng-container>
 
   <!-- Primer Apellido Column -->
@@ -64,7 +64,12 @@
     <td mat-cell *matCellDef="let registro"> {{registro.firma}} </td>
   </ng-container>
 
-
+  <ng-container matColumnDef="editar">
+    <th mat-header-cell *matHeaderCellDef> Editar </th>
+    <td mat-cell *matCellDef="let registro">
+      <button mat-button color="primary" (click)="cargarDatosEnFormulario(registro)">Editar</button>
+    </td>
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let registro; columns: displayedColumns;"></tr>

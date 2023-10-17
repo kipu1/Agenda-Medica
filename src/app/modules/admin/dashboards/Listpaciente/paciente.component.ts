@@ -19,12 +19,12 @@ import { MatSort } from '@angular/material/sort';
 import { FormsModule, NgModel } from "@angular/forms";
 import { fuseAnimations } from "@fuse/animations";
 import { MatInputModule } from "@angular/material/input";
-import { PacienteService } from "./paciente.service";
+import { PacientesService } from "./pacientes.service";
 import { Router } from "@angular/router";
 
 
 @Component({
-    selector       : 'paciente',
+    selector       : 'Listpaciente',
     templateUrl    : './paciente.component.html',
    
     encapsulation: ViewEncapsulation.None,
@@ -41,7 +41,6 @@ export class PacienteComponent
 
   
 registros: Paciente[] = [];
-
 
   registrarPersona() {
     // Validar los campos del formulario
@@ -62,14 +61,8 @@ registros: Paciente[] = [];
   
       // Actualizar la página de manera discreta
       location.reload();
-      this.irAlalistaDeMaquinas();
-    }, error => {
-      console.log(error);
     });
   }
-irAlalistaDeMaquinas(){
-  this.router.navigate(['/Listpaciente'])
-}
   applyFilter(event: Event) {
     console.log('Filtering...'); // Verifica si este mensaje aparece en la consola
     const filterValue = (event.target as HTMLInputElement).value;
@@ -77,16 +70,20 @@ irAlalistaDeMaquinas(){
   }
 
 
-  cargarDatosEnFormulario(registros: any) {
-    this.paciente = { ...registros }; // Copiamos los datos del registro seleccionado a la variable historias.
+  // cargarDatosEnFormulario(registros: any) {
+  //   this.paciente = { ...registros };
+  //    // Copiamos los datos del registro seleccionado a la variable historias.
+  // }
+
+  editarRegistro(idPaciente: number) {
+    // Redirige al formulario de edición y pasa el ID del paciente como parámetro
+    this.router.navigate(['/paciente', idPaciente]);
   }
-
-
     /**
      * Constructor
      */
     constructor(
-      private pacienteService: PacienteService,private router:Router
+      private pacienteService: PacientesService,private router:Router
         
     )
     

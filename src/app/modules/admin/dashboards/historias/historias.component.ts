@@ -9,7 +9,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { NgApexchartsModule } from "ng-apexcharts";
-import { CurrencyPipe, NgClass, NgFor, NgIf } from "@angular/common";
+import { CommonModule, CurrencyPipe, DatePipe, NgClass, NgFor, NgIf } from "@angular/common";
 
 import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
 import { Subject, takeUntil } from "rxjs";
@@ -21,6 +21,8 @@ import { fuseAnimations } from "@fuse/animations";
 import { MatInputModule } from "@angular/material/input";
 import { HistoriasService } from "./historias.service";
 import { Historias } from "./historias";
+import { MatDialog } from "@angular/material/dialog";
+import { DialogComponent } from "./DialogComponent ";
 
 
 @Component({
@@ -30,12 +32,12 @@ import { Historias } from "./historias";
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
     standalone     : true,
-    imports        : [ NgFor, FormsModule ,MatTableModule, MatPaginatorModule,MatButtonModule,MatIconModule,MatInputModule,MatFormFieldModule,MatTableModule,
+    imports        : [ NgFor, FormsModule ,CommonModule ,DatePipe ,MatTableModule, MatPaginatorModule,MatButtonModule,MatIconModule,MatInputModule,MatFormFieldModule,MatTableModule,
       MatInputModule],
 })
 export class HistoriasComponent 
 {
-  displayedColumns: string[] = ['idHistoria','idPaciente', 'fecha', 'nota', 'idAutor', 'firma'];
+  displayedColumns: string[] = ['idHistoria','idPaciente', 'fecha', 'nota', 'idAutor', 'firma','editar'];
   dataSource = new MatTableDataSource<Historias>;
   historias:Historias = new Historias();
 
@@ -70,13 +72,19 @@ registros: Historias[] = [];
   }
 
 
- 
-
+  cargarDatosEnFormulario(registros: any) {
+    this.historias = { ...registros }; // Copiamos los datos del registro seleccionado a la variable historias.
+  }
+  abrirDialog(nota: string): void {
+    this.dialog.open(DialogComponent, {
+      data: { nota}
+    });
+  }
     /**
      * Constructor
      */
     constructor(
-      private historiasService: HistoriasService
+      private historiasService: HistoriasService,private dialog: MatDialog
         
     )
     

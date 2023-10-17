@@ -31,6 +31,38 @@
     cursor: pointer;
     font-size: 16px;
   }
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .radio-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .radio-group input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .radio-group input[type="radio"]:checked {
+    background-color: #b3eef2;
+    border-color: #b3eef2;
+  }
+
+  .radio-group input[type="radio"]:focus {
+    outline: none;
+  }
     </style>
 </head>
 <body>
@@ -61,18 +93,23 @@
         <input type="text" id="segundoApellido" name="segundoApellido" [(ngModel)]="persona.segundoApellido">
       </div>
     
-      <div class="form-group">
-        <label for="genero">Género:</label>
-        <select id="genero" name="genero" [(ngModel)]="persona.genero">
-          <option value="masculino">Masculino</option>
-          <option value="femenino">Femenino</option>
-        </select>
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="genero" value="masculino" [(ngModel)]="persona.genero">
+          Masculino
+        </label>
+      
+        <label>
+          <input type="radio" name="genero" value="femenino" [(ngModel)]="persona.genero">
+          Femenino
+        </label>
+      
+       
       </div>
     
-      <div class="form-group">
-        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-        <input type="date" id="fechaNacimiento" name="fechaNacimiento" [(ngModel)]="persona.fechanacimiento">
-      </div>
+      <label for="fecha">Fecha de nacimiento:</label>
+  <input type="date" id="fecha" name="fecha" [value]="persona.fechanacimiento | date:'yyyy-MM-dd'" (input)="persona.fechanacimiento = $event.target.value" required><br>
+
       <div class="form-group">
         <label for="correo">Correo:</label>
         <input type="text" id="correo" name="correo" [(ngModel)]="persona.correo">
@@ -161,6 +198,13 @@
   <ng-container matColumnDef="telefono">
     <th mat-header-cell *matHeaderCellDef> Teléfono </th>
     <td mat-cell *matCellDef="let registro"> {{registro.telefono}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="editar">
+    <th mat-header-cell *matHeaderCellDef> Editar </th>
+    <td mat-cell *matCellDef="let registro">
+      <button mat-button color="primary" (click)="cargarDatosEnFormulario(registro)">Editar</button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

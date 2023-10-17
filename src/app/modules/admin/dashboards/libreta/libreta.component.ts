@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { Libreta } from './libreta';
+import { DialogComponent } from './DialogComponent ';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
     selector       : 'libreta',
     templateUrl    : './libreta.component.html',
@@ -30,10 +32,10 @@ import { Libreta } from './libreta';
 })
 export class LibretaComponent 
 {
-    displayedColumns: string[] = ['idLibreta', 'nombre', 'telefono', 'celular', 'email', 'web', 'direccion', 'notas'];
+    displayedColumns: string[] = ['idLibreta', 'nombre', 'telefono', 'celular', 'email', 'web', 'direccion', 'notas','editar'];
     dataSource = new MatTableDataSource<Libreta>;
     libreta:Libreta = new Libreta();
-  
+    mostrarFormulario = false;
     
   registros: Libreta[] = [];
   
@@ -48,30 +50,41 @@ export class LibretaComponent
         console.log(dato);
         // Agregar la persona al estado local (reemplaza 'this.registros' con tu estado local)
         this.registros.push(this.libreta);
-    
+
         // Restablecer los campos del formulario después del registro
         this.libreta = new Libreta(); // Esto restablecerá todos los campos a sus valores iniciales (vacíos)
+
+        // Ocultar el formulario
+        this.mostrarFormulario = false;
+
         // Actualizar el origen de datos de la tabla
         this.dataSource.data = this.registros;
-    
-        // Actualizar la página de manera discreta
-        location.reload();
-      });
-    }
+        this.mostrarFormulario = false;
+    });
+}
     applyFilter(event: Event) {
       console.log('Filtering...'); // Verifica si este mensaje aparece en la consola
       const filterValue = (event.target as HTMLInputElement).value;
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
   
-  
-   
+    toggleFormulario() {
+      this.mostrarFormulario = !this.mostrarFormulario;
+    }
+    cargarDatosEnFormulario(registros: any) {
+      this.libreta = { ...registros }; // Copiamos los datos del registro seleccionado a la variable historias.
+    }
+    abrirDialog(notas: string): void {
+      this.dialog.open(LibretaComponent, {
+        data: { notas}
+      });
+    }
   
       /**
        * Constructor
        */
       constructor(
-        private libretaService: LibretaService
+        private libretaService: LibretaService,private dialog: MatDialog
           
       )
       

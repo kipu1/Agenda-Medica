@@ -49,6 +49,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 link : '/dashboards/proveedor',
             },
             {
+                id   : 'dashboards.Lista paciente',
+                title: 'Lista paciente',
+                type : 'basic',
+                icon : 'heroicons_outline:user',
+                link : '/dashboards/Listpacientes',
+            },
+            {
                 id   : 'dashboards.Paciente',
                 title: 'Paciente',
                 type : 'basic',

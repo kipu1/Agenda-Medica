@@ -21,6 +21,9 @@ import { MatInputModule } from "@angular/material/input";
 import { VademecumService } from "./vademecum.service";
 import { Vademecum } from "./vademecum";
 
+import { MatDialog } from "@angular/material/dialog";
+import { DialogComponent } from "./DialogComponent ";
+
 
 @Component({
     selector       : 'vademecum',
@@ -34,7 +37,7 @@ import { Vademecum } from "./vademecum";
 })
 export class VademecumComponent 
 {
-  displayedColumns: string[] = ['id','idDoctor', 'compartido', 'laboratorio', 'medicamento', 'composicion', 'indicaciones', 'contraindicaciones', 'posologia', 'idCategoria', 'equivalencias','anotaciones','stock'];
+  displayedColumns: string[] = ['id','idDoctor', 'compartido', 'laboratorio', 'medicamento', 'composicion', 'indicaciones', 'contraindicaciones', 'posologia', 'idCategoria', 'equivalencias','anotaciones','stock','editar'];
   dataSource = new MatTableDataSource<Vademecum>;
   vademecums:Vademecum = new Vademecum();
 
@@ -68,14 +71,20 @@ registros: Vademecum[] = [];
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
- 
+  cargarDatosEnFormulario(registros: any) {
+    this.vademecums = { ...registros }; // Copiamos los datos del registro seleccionado a la variable historias.
+  }
+  abrirDialog(anotaciones: string): void {
+    this.dialog.open(DialogComponent, {
+      data: { anotaciones}
+    });
+  }
 
     /**
      * Constructor
      */
     constructor(
-      private vademecumService:VademecumService
+      private vademecumService:VademecumService,private dialog: MatDialog
         
     )
     

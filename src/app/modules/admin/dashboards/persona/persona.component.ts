@@ -9,7 +9,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { NgApexchartsModule } from "ng-apexcharts";
-import { CurrencyPipe, NgClass, NgFor, NgIf } from "@angular/common";
+import { CommonModule, CurrencyPipe, NgClass, NgFor, NgIf } from "@angular/common";
 
 import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
 import { Subject, takeUntil } from "rxjs";
@@ -29,12 +29,12 @@ import { MatRadioModule } from "@angular/material/radio";
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations,
     standalone     : true,
-    imports        : [ NgFor,MatRadioModule, FormsModule ,MatTableModule, MatPaginatorModule,MatButtonModule,MatIconModule,MatInputModule,MatFormFieldModule,MatTableModule,
+    imports        : [ NgFor,MatRadioModule, CommonModule,FormsModule ,MatTableModule, MatPaginatorModule,MatButtonModule,MatIconModule,MatInputModule,MatFormFieldModule,MatTableModule,
       MatInputModule],
 })
 export class PersonaComponent 
 {
-  displayedColumns: string[] = ['idPersona','cedula', 'primerNombre', 'segundoNombre', 'primerApellido', 'segundoApellido', 'genero', 'fechanacimiento', 'correo', 'direccion', 'telefono'];
+  displayedColumns: string[] = ['idPersona','cedula', 'primerNombre', 'segundoNombre', 'primerApellido', 'segundoApellido', 'genero', 'fechanacimiento', 'correo', 'direccion', 'telefono','editar'];
   dataSource = new MatTableDataSource<Persona>;
 persona:Persona = new Persona();
 
@@ -69,7 +69,9 @@ registros: Persona[] = [];
   }
 
 
- 
+  cargarDatosEnFormulario(registros: any) {
+    this.persona = { ...registros }; // Copiamos los datos del registro seleccionado a la variable historias.
+  }
 
     /**
      * Constructor

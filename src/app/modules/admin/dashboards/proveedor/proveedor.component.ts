@@ -20,6 +20,8 @@ import { FormsModule, NgModel } from "@angular/forms";
 import { fuseAnimations } from "@fuse/animations";
 import { MatInputModule } from "@angular/material/input";
 import { ProveedorService } from "./proveedor.service";
+import { DialogComponent } from "./DialogComponent ";
+import { MatDialog } from "@angular/material/dialog";
 
 
 @Component({
@@ -34,7 +36,7 @@ import { ProveedorService } from "./proveedor.service";
 })
 export class ProveedorComponent 
 {
-  displayedColumns: string[] = ['idProveedor','servicio', 'telefono1', 'telefono2', 'sitioweb', 'direccion', 'anotaciones'];
+  displayedColumns: string[] = ['idProveedor','servicio', 'telefono1', 'telefono2', 'sitioweb', 'direccion', 'anotaciones','editar'];
   dataSource = new MatTableDataSource<Proveedor>;
   proveedor:Proveedor = new Proveedor();
 
@@ -69,13 +71,21 @@ registros: Proveedor[] = [];
   }
 
 
- 
+  cargarDatosEnFormulario(registros: any) {
+    this.proveedor = { ...registros }; // Copiamos los datos del registro seleccionado a la variable historias.
+  }
+abrirDialog(anotaciones: string): void {
+    this.dialog.open(DialogComponent, {
+      data: { anotaciones}
+    });
+  }
+
 
     /**
      * Constructor
      */
     constructor(
-      private proveedorService: ProveedorService
+      private proveedorService: ProveedorService,private dialog: MatDialog
         
     )
     

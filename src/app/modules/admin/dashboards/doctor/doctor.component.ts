@@ -21,6 +21,10 @@ import { fuseAnimations } from "@fuse/animations";
 import { MatInputModule } from "@angular/material/input";
 import { Doctor } from "./doctor";
 import { DoctorService } from "./doctor.service";
+import { MatDialog } from "@angular/material/dialog";
+import { DialogComponent } from "./DialogComponent ";
+import { DialogComponent1 } from "./DialogComponent1";
+
 
 
 @Component({
@@ -35,7 +39,7 @@ import { DoctorService } from "./doctor.service";
 })
 export class DoctorComponent 
 {
-  displayedColumns: string[] = ['idDoctor','idRol','nombre','clavesecreta', 'comentarios', 'direccion', 'especialidad',  'telefono', 'clave', 'notaAuto', 'nota', 'comparte', 'cfg', 'cfgsec', 'email', 'extraAsister', 'field'];
+  displayedColumns: string[] = ['idDoctor','idRol','nombre','clavesecreta', 'comentarios', 'direccion', 'especialidad',  'telefono', 'clave', 'notaAuto', 'nota', 'comparte', 'cfg', 'cfgsec', 'email', 'extraAsister', 'field','editar'];
   dataSource = new MatTableDataSource<Doctor>;
   doctor:Doctor = new Doctor();
 
@@ -69,14 +73,26 @@ registros: Doctor[] = [];
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
+  cargarDatosEnFormulario(registros: any) {
+    this.doctor = { ...registros }; // Copiamos los datos del registro seleccionado a la variable historias.
+  }
+  abrirDialog(notaAuto: string): void {
+    this.dialog.open(DialogComponent, {
+      data: { notaAuto}
+    });
+  }
  
-
+  abrirDialog1(nota: string): void {
+    this.dialog.open(DialogComponent1, {
+      data: { nota}
+    });
+  }
+ 
     /**
      * Constructor
      */
     constructor(
-      private doctorService: DoctorService
+      private doctorService: DoctorService,private dialog: MatDialog
         
     )
     

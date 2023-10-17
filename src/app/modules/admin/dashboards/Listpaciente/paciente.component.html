@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Formulario</title>
   <style>
@@ -20,214 +19,50 @@
     .form-container {
       background: #fff;
       padding: 20px;
-      max-width: 800px;
+      max-width: 800px; /* Aumenta este valor para hacer el formulario más ancho */
       border: 1px solid #ccc;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
     }
 
     .form-group {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin-bottom: 10px;
-      /* Espaciado entre grupos de campos */
     }
 
     .form-group label {
       flex: 1;
-      max-width: 25%;
-      /* Ancho del label ajustado */
-      padding-right: 10px;
-      /* Espaciado a la derecha del label */
-      text-align: right;
-      /* Alineación a la derecha del label */
+      max-width: 24%;
     }
 
     .form-group input,
     .form-group select {
       flex: 3;
-      max-width: 70%;
-      /* Ancho del campo de entrada ajustado */
-      padding: 8px;
-      /* Espaciado interior para un aspecto uniforme */
-      border: 1px solid #ccc;
-    }
-
-    .custom-center {
-      text-align: center;
+      max-width: 74%;
+      margin-bottom: 10px;
     }
   </style>
-
 </head>
-
-<body>
+<body >
   <div>
-
-    <h1 class="mt-8 text-4xl font-extrabold tracking-tight leading-tight custom-center">Registro Paciente</h1>
-
-    <form>
-
-      <div class="form-group">
-        <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" [(ngModel)]="paciente.apellido">
-
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" [(ngModel)]="paciente.nombre">
-
-        <label for="documento">Documento:</label>
-        <input type="text" id="documento" name="documento" [(ngModel)]="paciente.documento">
-
-      </div>
-
-      <div class="form-group">
-        <label for="fecha">Fecha de nacimiento:</label>
-        <input type="date" id="fecha" name="fecha" [value]="paciente.fechanacimiento | date:'yyyy-MM-dd'"
-          (input)="paciente.fechanacimiento = $event.target.value" required>
-
-        <label for="grupo">Grupo Sanguíneo:</label>
-        <select id="grupo" name="grupo" [(ngModel)]="paciente.grupo"
-          style="padding: 5px; font-size: 14px; background: transparent;">
-          <option value="A+">A+</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B-">B-</option>
-          <option value="AB+">AB+</option>
-          <option value="AB-">AB-</option>
-          <option value="O+">O+</option>
-          <option value="O-">O-</option>
-        </select>
-
-
-        <label for="tipodocumento">Genero:</label>
-        <div class="radio-group">
-          <label>
-            <input type="radio" name="genero" value="masculino" [(ngModel)]="paciente.sexo">
-            Masculino
-          </label>
-
-          <label>
-            <input type="radio" name="genero" value="femenino" [(ngModel)]="paciente.sexo">
-            Femenino
-          </label>
-        </div>
-
-      </div>
-
-      <div class="form-group">
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion" [(ngModel)]="paciente.direccion"><br>
-
-        <label for="cp">Cp:</label>
-        <input type="text" id="cp" name="cp" [(ngModel)]="paciente.cp"><br>
-
-
-        <label for="obra">Obra:</label>
-        <input type="text" id="obra" name="obra" [(ngModel)]="paciente.obra"><br>
-
-      </div>
-      <div class="form-group">
-        <label for="afiliado">Afiliado:</label>
-        <input type="text" id="afiliado" name="afiliado" [(ngModel)]="paciente.afiliado"><br>
-
-        <label for="telefono1">Teléfono1:</label>
-        <input type="text" id="telefono1" name="telefono1" [(ngModel)]="paciente.telefono1"><br>
-
-        <label for="telefono2">Teléfono2:</label>
-        <input type="text" id="telefono2" name="telefono2" [(ngModel)]="paciente.telefono2"><br>
-      </div>
-      <div class="form-group">
-        <label for="telefono3">Teléfono3:</label>
-        <input type="text" id="telefono3" name="telefono3" [(ngModel)]="paciente.telefono3"><br>
-
-        <label for="clinicos">Clinicos:</label>
-        <input type="text" id="clinicos" name="clinicos" [(ngModel)]="paciente.clinicos"><br>
-
-        <label for="diagnostico">Diagnostico:</label>
-        <input type="text" id="diagnostico" name="diagnostico" [(ngModel)]="paciente.diagnostico"><br>
-      </div>
-      <div class="form-group">
-        <label for="cormobilidades">Cormobilidades:</label>
-        <input type="text" id="cormobilidades" name="cormobilidades" [(ngModel)]="paciente.cormobilidades"><br>
-
-
-        <label for="familiar">Familiar:</label>
-        <input type="text" id="familiar" name="familiar" [(ngModel)]="paciente.familiar"><br>
-
-        <label for="comentarios">Comentarios:</label>
-        <input type="text" id="comentarios" name="comentarios" [(ngModel)]="paciente.comentarios"><br>
-      </div>
-      <div class="form-group">
-        <label for="extra1">Extra1:</label>
-        <input type="text" id="extra1" name="extra1" [(ngModel)]="paciente.extra1"><br>
-
-
-
-
-        <label for="extra2">Extra2:</label>
-        <input type="text" id="extra2" name="extra2" [(ngModel)]="paciente.extra2"><br>
-
-        <label for="extra3">Extra3:</label>
-        <input type="text" id="extra3" name="extra3" [(ngModel)]="paciente.extra3"><br>
-      </div>
-      <div class="form-group">
-        <label for="extra4">Extra4:</label>
-        <input type="text" id="extra4" name="extra4" [(ngModel)]="paciente.extra4"><br>
-
-        <label for="extra5">Extra5:</label>
-        <input type="text" id="extra5" name="extra5" [(ngModel)]="paciente.extra5"><br>
-
-        <label for="extra6">Extra6:</label>
-        <input type="text" id="extra6" name="extra6" [(ngModel)]="paciente.extra6"><br>
-      </div>
-      <div class="form-group">
-        <label for="extra7">Extra7:</label>
-        <input type="text" id="extra7" name="extra7" [(ngModel)]="paciente.extra7"><br>
-
-        <label for="extra8">Extra8:</label>
-        <input type="text" id="extra8" name="extra8" [(ngModel)]="paciente.extra8"><br>
-
-        <label for="extra9">Extra9:</label>
-        <input type="text" id="extra9" name="extra9" [(ngModel)]="paciente.extra9"><br>
-
-
-        <label for="extra10">Extra10:</label>
-        <input type="text" id="extra10" name="extra10" [(ngModel)]="paciente.extra10"><br>
-      </div>
-      <div class="form-group">
-        <label for="campoCfg1">CampoCfg1:</label>
-        <input type="text" id="campoCfg1" name="campoCfg1" [(ngModel)]="paciente.campoCfg1"><br>
-
-        <label for="campoCfg2">CampoCfg2:</label>
-        <input type="text" id="campoCfg2" name="campoCfg2" [(ngModel)]="paciente.campoCfg2"><br>
-
-        <label for="campoCfg3">CampoCfg3:</label>
-        <input type="text" id="campoCfg3" name="campoCfg3" [(ngModel)]="paciente.campoCfg3"><br>
-      </div>
-      <div class="form-group">
-        <label for="tipodocumento">Tipo de documento:</label>
-        <select id="tipodocumento" name="tipodocumento" [(ngModel)]="paciente.tipodocumento">
-          <option value="CI">CI</option>
-          <option value="Pasaporte">Pasaporte</option>
-        </select><br>
-
-
-        <label for="abrir">Abrir:</label>
-        <input type="text" id="abrir" name="abrir" [(ngModel)]="paciente.abrir"><br>
-
-        <label for="field">Field:</label>
-        <input type="text" id="field" name="field" [(ngModel)]="paciente.field"><br>
-      </div>
-      <button mat-raised-button color="accent" (click)="registrarPersona()">Registrar</button>
-    </form>
-  </div>
-  <!-- <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64 mt-15" [subscriptSizing]="'dynamic'">
+  
+</div>
+  <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64 mt-15" [subscriptSizing]="'dynamic'">
     <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:magnifying-glass'"></mat-icon>
     <input matInput (keyup)="applyFilter($event)" [placeholder]="'Buscar registros'" #input>
   </mat-form-field>
   <div style="overflow: auto; height: 300px;">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-     ID Column 
+    <!-- ID Column -->
     <ng-container matColumnDef="idPaciente">
       <th mat-header-cell *matHeaderCellDef> ID Paciente</th>
       <td mat-cell *matCellDef="let registro"> {{registro.idPaciente}} </td>
@@ -330,7 +165,7 @@
       <td mat-cell *matCellDef="let registro"> {{registro.comentarios}} </td>
     </ng-container>
 
-    
+    <!-- Cédula Column -->
     <ng-container matColumnDef="extra1">
       <th mat-header-cell *matHeaderCellDef> Extra1 </th>
       <td mat-cell *matCellDef="let registro"> {{registro.extra1}} </td>
@@ -422,7 +257,7 @@
     <ng-container matColumnDef="editar">
       <th mat-header-cell *matHeaderCellDef> Editar </th>
       <td mat-cell *matCellDef="let registro">
-        <button mat-button color="primary" (click)="cargarDatosEnFormulario(registro)">Editar</button>
+        <button mat-button color="primary" (click)="editarRegistro(registro.idPaciente)">Editar</button>
       </td>
     </ng-container>
 
@@ -474,9 +309,8 @@
         </tr>
     </tbody>
   
-</table> -->
-
-
+</table>
+</div>
+    
 </body>
-
-</html>
+</html> 

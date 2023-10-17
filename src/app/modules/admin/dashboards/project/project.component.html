@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mi Libreta</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    .libreta {
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .libreta h1 {
+      font-size: 24px;
+      margin-top: 0;
+    }
+    
+    .libreta p {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .libreta input[type="text"],
+    .libreta textarea {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .libreta button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="libreta">
+    <h1>Mi Libreta</h1>
+    <form>
+      <label for="titulo">Título:</label>
+      <input type="text" id="titulo" name="titulo" placeholder="Ingrese el título de la nota">
+      
+      <label for="contenido">Contenido:</label>
+      <textarea id="contenido" name="contenido" placeholder="Ingrese el contenido de la nota"></textarea>
+      
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+</body>
+</html>

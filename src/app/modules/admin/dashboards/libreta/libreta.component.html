@@ -3,11 +3,42 @@
 <head>
 
     <style>
-   
+    textarea#anotaciones {
+  height: 150px; /* Ajusta la altura según tus necesidades */
+}
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
     </style>
 </head>
 <body>
-  <h1 class="mt-8 text-4xl font-extrabold tracking-tight leading-tight"> Registro Libreta</h1>
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h1 class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Libreta</h1>
 <form>
   <label for="nombre">Nombre:</label>
 <input type="text" id="nombre" name="nombre" [(ngModel)]="libreta.nombre"><br>
@@ -27,14 +58,14 @@
 <input type="text" id="direccion" name="direccion" [(ngModel)]="libreta.direccion"><br>
 
 
-<label for="notas">Notas:</label>
-<input type="text" id="notas" name="notas" [(ngModel)]="libreta.notas"><br>
 
+<label for="notas">Notas:</label>
+<textarea id="notas" name="notas" [(ngModel)]="libreta.notas"></textarea><br>
 
 <button mat-raised-button color="accent"(click)="registrarPersona()">Registrar</button>
 
 </form>
-
+</div>
   <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64 mt-15" [subscriptSizing]="'dynamic'">
     <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:magnifying-glass'"></mat-icon>
     <input matInput (keyup)="applyFilter($event)" [placeholder]="'Buscar registros'" #input>
@@ -82,14 +113,21 @@
   </ng-container>
 
   <ng-container matColumnDef="notas">
-    <th mat-header-cell *matHeaderCellDef> Direccion </th>
-    <td mat-cell *matCellDef="let registro"> {{registro.notas}} </td>
+    <th mat-header-cell *matHeaderCellDef> Notas  </th>
+    <td mat-cell *matCellDef="let registro">
+      <button mat-button color="primary" (click)="abrirDialog(registro.notas)">Ver</button>
+    </td>
   </ng-container>
-
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let registro; columns: displayedColumns;"></tr>
-
+  
+  <ng-container matColumnDef="editar">
+    <th mat-header-cell *matHeaderCellDef> Editar </th>
+    <td mat-cell *matCellDef="let registro">
+      <button mat-button color="primary" (click)="cargarDatosEnFormulario(registro)">Editar</button>
+    </td>
+  </ng-container>
   <tbody>
         <tr *ngFor="let registro of registros">
             <td>{{ registro.idLibreta }}</td>
