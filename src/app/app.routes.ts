@@ -86,7 +86,7 @@ export const appRoutes: Route[] = [
                 {path: 'Listpacientes', loadChildren: () => import('app/modules/admin/dashboards/Listpaciente/paciente.routes')},
                 {path: 'historias', loadChildren: () => import('app/modules/admin/dashboards/historias/historias.routes')},
                 {path: 'vademecum', loadChildren: () => import('app/modules/admin/dashboards/vademecum/vademecum.routes')},
-                {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/project/project.routes')},
+                {path: 'actualizarpacientes', loadChildren: () => import('app/modules/admin/dashboards/actualizarPaciente/paciente.routes')},
                 
             ]},
             {
@@ -107,10 +107,12 @@ export const appRoutes: Route[] = [
         
                         {path: 'proveedor', loadChildren: () => import('app/modules/admin/dashboards/proveedor/proveedor.routes')},
                         {path: 'paciente', loadChildren: () => import('app/modules/admin/dashboards/paciente/paciente.routes')},
-                        {path: 'Listpacientes', loadChildren: () => import('app/modules/admin/dashboards/Listpaciente/paciente.routes')},
+                   
+                      
+                       
                         {path: 'historias', loadChildren: () => import('app/modules/admin/dashboards/historias/historias.routes')},
                         {path: 'vademecum', loadChildren: () => import('app/modules/admin/dashboards/vademecum/vademecum.routes')},
-                        {path: 'project', loadChildren: () => import('app/modules/admin/dashboards/project/project.routes')},
+                       
                         
                     ]},
             // Apps

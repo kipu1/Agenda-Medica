@@ -35,17 +35,28 @@ import { Router } from "@angular/router";
 })
 export class PacienteComponent 
 {
-  displayedColumns: string[] = ['idPaciente','idRol', 'apellido', 'nombre', 'documento', 'fechanacimiento', 'grupo', 'sexo', 'direccion', 'cp', 'obra','afiliado', 'telefono1', 'telefono2', 'telefono3', 'clinicos', 'diagnostico', 'cormobilidades', 'familiar', 'comentarios', 'extra1','extra2','extra3', 'extra4', 'extra5', 'extra6', 'extra7', 'extra8', 'extra9', 'extra10', 'idDoctor', 'campoCfg1','campoCfg2','campoCfg3', 'tipodocumento', 'abrir', 'field','editar'];
+  displayedColumns: string[] = ['idPaciente','idRol', 'apellido', 'nombre', 'documento', 'fechanacimiento', 'grupo', 'sexo', 'direccion', 'cp', 'obra','afiliado', 'telefono1', 'telefono2', 'telefono3', 'clinicos', 'diagnostico', 'cormobilidades', 'familiar', 'comentarios', 'extra1','extra2','extra3', 'extra4', 'extra5', 'extra6', 'extra7', 'extra8', 'extra9', 'extra10', 'idDoctor', 'campoCfg1','campoCfg2','campoCfg3', 'tipodocumento' , 'editar'];
   dataSource = new MatTableDataSource<Paciente>;
   paciente:Paciente = new Paciente();
+  // pacientes = {
+  //   telefono2: ''
+  // };
+
+
+  camposComoTextarea: { [key: string]: boolean } = {
+    clinicos: false,
+    diagnostico: false,
+    cormobilidades: false,
+    familiar: false,
+  };
 
   
 registros: Paciente[] = [];
 
-
+// || !this.paciente.abrir 
   registrarPersona() {
     // Validar los campos del formulario
-    if (!this.paciente.apellido || !this.paciente.nombre || !this.paciente.documento || !this.paciente.fechanacimiento || !this.paciente.grupo || !this.paciente.sexo || !this.paciente.direccion || !this.paciente.cp || !this.paciente.obra || !this.paciente.afiliado|| !this.paciente.telefono1 || !this.paciente.telefono2 || !this.paciente.telefono3 || !this.paciente.clinicos || !this.paciente.diagnostico || !this.paciente.cormobilidades || !this.paciente.familiar || !this.paciente.comentarios|| !this.paciente.extra1 || !this.paciente.extra2 || !this.paciente.extra3 || !this.paciente.extra4 || !this.paciente.extra5 || !this.paciente.extra6 || !this.paciente.extra7 || !this.paciente.extra8 || !this.paciente.extra9|| !this.paciente.extra10 || !this.paciente.campoCfg1 || !this.paciente.campoCfg2 || !this.paciente.campoCfg3 || !this.paciente.tipodocumento || !this.paciente.abrir || !this.paciente.field ) {
+    if (!this.paciente.apellido || !this.paciente.nombre || !this.paciente.documento || !this.paciente.fechanacimiento || !this.paciente.grupo || !this.paciente.sexo || !this.paciente.direccion || !this.paciente.cp || !this.paciente.obra || !this.paciente.afiliado|| !this.paciente.telefono1 || !this.paciente.telefono2 || !this.paciente.telefono3 || !this.paciente.clinicos || !this.paciente.diagnostico || !this.paciente.cormobilidades || !this.paciente.familiar || !this.paciente.comentarios|| !this.paciente.extra1 || !this.paciente.extra2 || !this.paciente.extra3 || !this.paciente.extra4 || !this.paciente.extra5 || !this.paciente.extra6 || !this.paciente.extra7 || !this.paciente.extra8 || !this.paciente.extra9|| !this.paciente.extra10 || !this.paciente.campoCfg1 || !this.paciente.campoCfg2 || !this.paciente.campoCfg3 || !this.paciente.tipodocumento  ) {
       return;
     }
   
@@ -75,7 +86,9 @@ irAlalistaDeMaquinas(){
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+  toggleCampoComoTextarea(campo: string): void {
+    this.camposComoTextarea[campo] = !this.camposComoTextarea[campo];
+  }
 
   cargarDatosEnFormulario(registros: any) {
     this.paciente = { ...registros }; // Copiamos los datos del registro seleccionado a la variable historias.

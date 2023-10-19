@@ -9,13 +9,7 @@ export const defaultNavigation: FuseNavigationItem[] = [
         type    : 'group',
         icon    : 'heroicons_outline:home',
         children: [
-            {
-                id   : 'dashboards.NOES',
-                title: 'NOES',
-                type : 'basic',
-                icon : 'heroicons_outline:archive-box-arrow-down',
-                link : '/dashboards/project',
-            },
+      
          
      
 
@@ -55,12 +49,20 @@ export const defaultNavigation: FuseNavigationItem[] = [
                 icon : 'heroicons_outline:user',
                 link : '/dashboards/Listpacientes',
             },
+        
             {
                 id   : 'dashboards.Paciente',
                 title: 'Paciente',
                 type : 'basic',
                 icon : 'heroicons_outline:user',
                 link : '/dashboards/paciente',
+            },
+            {
+                id   : 'dashboards.Actualizar paciente',
+                title: 'Actualizar paciente',
+                type : 'basic',
+                icon : 'heroicons_outline:user',
+                link : '/dashboards/actualizarpacientes',
             },
             {
                 id   : 'dashboards.Historias',

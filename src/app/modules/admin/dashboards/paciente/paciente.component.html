@@ -1,30 +1,10 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>Formulario</title>
-  <style>
-    .form-popup {
-      background: rgba(0, 0, 0, 0.7);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
 
-    .form-container {
-      background: #fff;
-      padding: 20px;
-      max-width: 800px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
+  <style>
+  
+  
 
     .form-group {
       display: flex;
@@ -57,27 +37,39 @@
     .custom-center {
       text-align: center;
     }
+ 
+
+textarea {
+  width: 100%; /* Ajusta el ancho según tus necesidades */
+  max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+}
   </style>
 
-</head>
+
 
 <body>
   <div>
 
-    <h1 class="mt-8 text-4xl font-extrabold tracking-tight leading-tight custom-center">Registro Paciente</h1>
+    <h1 class="mt-8 text-2xl font-extrabold tracking-tight leading-tight custom-center">Registro Paciente</h1>
 
     <form>
-
       <div class="form-group">
         <label for="apellido">Apellido:</label>
         <input type="text" id="apellido" name="apellido" [(ngModel)]="paciente.apellido">
 
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" [(ngModel)]="paciente.nombre">
+      </div>
 
+      <div class="form-group">
         <label for="documento">Documento:</label>
         <input type="text" id="documento" name="documento" [(ngModel)]="paciente.documento">
 
+        <label for="tipodocumento">Tipo de documento:</label>
+        <select id="tipodocumento" name="tipodocumento" [(ngModel)]="paciente.tipodocumento">
+          <option value="CI">CI</option>
+          <option value="Pasaporte">Pasaporte</option>
+        </select>
       </div>
 
       <div class="form-group">
@@ -98,102 +90,76 @@
           <option value="O-">O-</option>
         </select>
 
-
         <label for="tipodocumento">Genero:</label>
-        <div class="radio-group">
-          <label>
-            <input type="radio" name="genero" value="masculino" [(ngModel)]="paciente.sexo">
-            Masculino
-          </label>
+<div class="radio-group">
+  <label>
+    <input type="radio" name="genero" value="masculino" [(ngModel)]="paciente.sexo">
+    Masculino
+  </label>
 
-          <label>
-            <input type="radio" name="genero" value="femenino" [(ngModel)]="paciente.sexo">
-            Femenino
-          </label>
-        </div>
-
+  <label>
+    <input type="radio" name="genero" value="femenino" [(ngModel)]="paciente.sexo">
+    Femenino
+  </label>
+</div>
       </div>
 
+    </form>
+
+    <form>
       <div class="form-group">
         <label for="direccion">Dirección:</label>
         <input type="text" id="direccion" name="direccion" [(ngModel)]="paciente.direccion"><br>
 
         <label for="cp">Cp:</label>
         <input type="text" id="cp" name="cp" [(ngModel)]="paciente.cp"><br>
-
-
-        <label for="obra">Obra:</label>
-        <input type="text" id="obra" name="obra" [(ngModel)]="paciente.obra"><br>
-
       </div>
+
       <div class="form-group">
+        <label for="obra">Obra:</label>
+        <select id="obra" name="obra" [(ngModel)]="paciente.obra"
+          style="padding: 5px; font-size: 14px; background: transparent;">
+          <option value="Galeno">Galeno</option>
+          <option value="IOMA">IOMA</option>
+          <option value="IOSE">IOSE</option>
+          <option value="MAPFRE">MAPFRE</option>
+          <option value="Medicals">Medicals</option>
+          <option value="Medicus">Medicus</option>
+          <option value="OSDE">OSDE</option>
+          <option value="OSDEPYM">OSDEPYM</option>
+          <option value="OSECAC">OSECAC</option>
+          <option value="PAMI">PAMI</option>
+          <option value="Particular / Privado">Particular / Privado</option>
+          <option value="SUTEBA">SUTEBA</option>
+          <option value="Swiss Medical Group">Swiss Medical Group</option>
+         
+        </select>
+    
         <label for="afiliado">Afiliado:</label>
         <input type="text" id="afiliado" name="afiliado" [(ngModel)]="paciente.afiliado"><br>
+      </div>
 
+    </form>
+
+    <form>
+      <div class="form-group">
         <label for="telefono1">Teléfono1:</label>
         <input type="text" id="telefono1" name="telefono1" [(ngModel)]="paciente.telefono1"><br>
 
         <label for="telefono2">Teléfono2:</label>
-        <input type="text" id="telefono2" name="telefono2" [(ngModel)]="paciente.telefono2"><br>
-      </div>
-      <div class="form-group">
+        <div class="whatsapp-input">
+          <input type="text" id="telefono2" name="telefono2" [(ngModel)]="paciente.telefono2">
+          <a class="whatsapp-link" [href]="'https://api.whatsapp.com/send?phone=' + paciente.telefono2" target="_blank">
+            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:chat-bubble-oval-left-ellipsis'"></mat-icon>
+          </a>
+        </div>
         <label for="telefono3">Teléfono3:</label>
         <input type="text" id="telefono3" name="telefono3" [(ngModel)]="paciente.telefono3"><br>
-
-        <label for="clinicos">Clinicos:</label>
-        <input type="text" id="clinicos" name="clinicos" [(ngModel)]="paciente.clinicos"><br>
-
-        <label for="diagnostico">Diagnostico:</label>
-        <input type="text" id="diagnostico" name="diagnostico" [(ngModel)]="paciente.diagnostico"><br>
       </div>
-      <div class="form-group">
-        <label for="cormobilidades">Cormobilidades:</label>
-        <input type="text" id="cormobilidades" name="cormobilidades" [(ngModel)]="paciente.cormobilidades"><br>
 
+    </form>
 
-        <label for="familiar">Familiar:</label>
-        <input type="text" id="familiar" name="familiar" [(ngModel)]="paciente.familiar"><br>
-
-        <label for="comentarios">Comentarios:</label>
-        <input type="text" id="comentarios" name="comentarios" [(ngModel)]="paciente.comentarios"><br>
-      </div>
-      <div class="form-group">
-        <label for="extra1">Extra1:</label>
-        <input type="text" id="extra1" name="extra1" [(ngModel)]="paciente.extra1"><br>
-
-
-
-
-        <label for="extra2">Extra2:</label>
-        <input type="text" id="extra2" name="extra2" [(ngModel)]="paciente.extra2"><br>
-
-        <label for="extra3">Extra3:</label>
-        <input type="text" id="extra3" name="extra3" [(ngModel)]="paciente.extra3"><br>
-      </div>
-      <div class="form-group">
-        <label for="extra4">Extra4:</label>
-        <input type="text" id="extra4" name="extra4" [(ngModel)]="paciente.extra4"><br>
-
-        <label for="extra5">Extra5:</label>
-        <input type="text" id="extra5" name="extra5" [(ngModel)]="paciente.extra5"><br>
-
-        <label for="extra6">Extra6:</label>
-        <input type="text" id="extra6" name="extra6" [(ngModel)]="paciente.extra6"><br>
-      </div>
-      <div class="form-group">
-        <label for="extra7">Extra7:</label>
-        <input type="text" id="extra7" name="extra7" [(ngModel)]="paciente.extra7"><br>
-
-        <label for="extra8">Extra8:</label>
-        <input type="text" id="extra8" name="extra8" [(ngModel)]="paciente.extra8"><br>
-
-        <label for="extra9">Extra9:</label>
-        <input type="text" id="extra9" name="extra9" [(ngModel)]="paciente.extra9"><br>
-
-
-        <label for="extra10">Extra10:</label>
-        <input type="text" id="extra10" name="extra10" [(ngModel)]="paciente.extra10"><br>
-      </div>
+    <form>
       <div class="form-group">
         <label for="campoCfg1">CampoCfg1:</label>
         <input type="text" id="campoCfg1" name="campoCfg1" [(ngModel)]="paciente.campoCfg1"><br>
@@ -204,23 +170,87 @@
         <label for="campoCfg3">CampoCfg3:</label>
         <input type="text" id="campoCfg3" name="campoCfg3" [(ngModel)]="paciente.campoCfg3"><br>
       </div>
-      <div class="form-group">
-        <label for="tipodocumento">Tipo de documento:</label>
-        <select id="tipodocumento" name="tipodocumento" [(ngModel)]="paciente.tipodocumento">
-          <option value="CI">CI</option>
-          <option value="Pasaporte">Pasaporte</option>
-        </select><br>
 
 
-        <label for="abrir">Abrir:</label>
-        <input type="text" id="abrir" name="abrir" [(ngModel)]="paciente.abrir"><br>
-
-        <label for="field">Field:</label>
-        <input type="text" id="field" name="field" [(ngModel)]="paciente.field"><br>
-      </div>
-      <button mat-raised-button color="accent" (click)="registrarPersona()">Registrar</button>
     </form>
+    <form>
+    <h1 class="mt-3 text-2xl font-extrabold tracking-tight leading-tight custom-center">Antecedentes</h1>
+    <div class="form-group">
+      <label for="clinicos">Clinicos:</label>
+        <input type="text" id="clinicos" name="clinicos" [(ngModel)]="paciente.clinicos"><br>
+
+        <label for="diagnostico">Diagnostico:</label>
+        <input type="text" id="diagnostico" name="diagnostico" [(ngModel)]="paciente.diagnostico"><br>
+    </div>
+
+    <div class="form-group">
+      <label for="cormobilidades">Cormobilidades:</label>
+        <input type="text" id="cormobilidades" name="cormobilidades" [(ngModel)]="paciente.cormobilidades"><br>
+
+       <label for="familiar">Familiar:</label>
+        <input type="text" id="familiar" name="familiar" [(ngModel)]="paciente.familiar"><br>
+    </div>
+
+  </form>
+
+  <form>
+    <h1 class="mt-3 text-2xl font-extrabold tracking-tight leading-tight custom-center">Clinico</h1>
+    <div class="form-group">
+      <label for="extra1">Hepatitis:</label>
+        <input type="text" id="extra1" name="extra1" [(ngModel)]="paciente.extra1"><br>
+
+
+        <label for="extra2">Enf.Infecciosas:</label>
+        <input type="text" id="extra2" name="extra2" [(ngModel)]="paciente.extra2"><br>
+
+        <label for="extra3">Alergias:</label>
+        <input type="text" id="extra3" name="extra3" [(ngModel)]="paciente.extra3"><br>
+
+
+    </div>
+
+    <div class="form-group">
+     <label for="extra4">Enf.Neurológicas:</label>
+        <input type="text" id="extra4" name="extra4" [(ngModel)]="paciente.extra4"><br>
+
+        <label for="extra5">Medicamentos:</label>
+        <input type="text" id="extra5" name="extra5" [(ngModel)]="paciente.extra5"><br>
+
+        <label for="extra6">Cardiopatías:</label>
+        <input type="text" id="extra6" name="extra6" [(ngModel)]="paciente.extra6"><br>
+    </div>
+
+    <div class="form-group">
+      <label for="extra7">Diabetes:</label>
+        <input type="text" id="extra7" name="extra7" [(ngModel)]="paciente.extra7"><br>
+
+        <label for="extra8">Interv.Quirurgicas:</label>
+        <input type="text" id="extra8" name="extra8" [(ngModel)]="paciente.extra8"><br>
+
+        <label for="extra9">Adicciones:</label>
+        <input type="text" id="extra9" name="extra9" [(ngModel)]="paciente.extra9"><br>
+
+        <label for="extra10">Otros:</label>
+        <input type="text" id="extra10" name="extra10" [(ngModel)]="paciente.extra10"><br>
+     </div>
+     </form>
+     <form>
+      <h1 class="mt-3 text-2xl font-extrabold tracking-tight leading-tight custom-center">Comentarios</h1>
+<div class="form-group text-center">
+
+    <textarea id="comentarios" name="comentarios" [(ngModel)]="paciente.comentarios" aria-label="Comentarios"></textarea><br>
   </div>
+      
+    
+
+  </form>
+    <button mat-raised-button color="accent" (click)="registrarPersona()">Registrar</button>
+
+  </div>
+
+</body>
+
+</html>
   <!-- <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64 mt-15" [subscriptSizing]="'dynamic'">
     <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:magnifying-glass'"></mat-icon>
     <input matInput (keyup)="applyFilter($event)" [placeholder]="'Buscar registros'" #input>
@@ -477,6 +507,3 @@
 </table> -->
 
 
-</body>
-
-</html>

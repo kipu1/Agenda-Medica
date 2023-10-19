@@ -38,7 +38,7 @@ export class Paciente {
     campoCfg3: string='';   
     tipodocumento: string='';
     abrir: string='';
-    field: string='';
+
    
 
 }

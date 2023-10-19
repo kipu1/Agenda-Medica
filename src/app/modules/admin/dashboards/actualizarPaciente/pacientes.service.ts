@@ -50,11 +50,9 @@ export class PacientesService
         return this._httpClient.get<Paciente[]>(`${this.url}/listar`);
       }
     
-      actualizarPersona(id: number, paciente: Paciente): Observable<object> {
+      updatePersona(id: number, paciente: Paciente): Observable<object> {
         return this._httpClient.put(`${this.url}/actualizar/${id}`, paciente);
       }
   
-      eliminarPersona(id: number): Observable<object> {
-        return this._httpClient.delete(`${this.url}/eliminar/${id}`);
-      }
+      
 }
